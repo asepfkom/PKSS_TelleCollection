@@ -1,0 +1,6 @@
+Line 453: Class MSComctlLib.ProgressBar of control PB1 was not a loaded control class.
+Line 526: Class MSComctlLib.ListView of control LvPTP was not a loaded control class.
+Line 618: Class MSComctlLib.ListView of control LvPTPRejected was not a loaded control class.
+Line 651: Class MSComctlLib.ListView of control LvPTPApproved was not a loaded control class.
+Line 684: Class MSComctlLib.ListView of control LvHamanto was not a loaded control class.
+Line 717: Class MSComctlLib.ProgressBar of control PB2 was not a loaded control class.

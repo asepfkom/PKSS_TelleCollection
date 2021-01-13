@@ -1,0 +1,3229 @@
+VERSION 5.00
+Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate6.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{065E6FD1-1BF9-11D2-BAE8-00104B9E0792}#3.0#0"; "ssa3d30.ocx"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
+Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "MSCOMM32.OCX"
+Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
+Begin VB.MDIForm MDIForm1 
+   BackColor       =   &H8000000F&
+   Caption         =   "Tele Integrasi Nusantara Sistem RITCARD"
+   ClientHeight    =   8925
+   ClientLeft      =   1620
+   ClientTop       =   2670
+   ClientWidth     =   12255
+   Icon            =   "MDIForm1.frx":0000
+   LinkTopic       =   "MDIForm1"
+   Moveable        =   0   'False
+   NegotiateToolbars=   0   'False
+   Picture         =   "MDIForm1.frx":08CA
+   WindowState     =   2  'Maximized
+   Begin VB.Timer TimerBlink 
+      Left            =   675
+      Top             =   2565
+   End
+   Begin VB.Timer Timer6 
+      Interval        =   100
+      Left            =   3090
+      Top             =   660
+   End
+   Begin VB.Timer Timer5 
+      Interval        =   100
+      Left            =   0
+      Top             =   0
+   End
+   Begin MSWinsockLib.Winsock Winsock2 
+      Left            =   2010
+      Top             =   1080
+      _ExtentX        =   741
+      _ExtentY        =   741
+      _Version        =   393216
+      LocalPort       =   9999
+   End
+   Begin VB.Timer Timer3 
+      Enabled         =   0   'False
+      Interval        =   1000
+      Left            =   11580
+      Top             =   1380
+   End
+   Begin VB.Timer Timer2 
+      Interval        =   1000
+      Left            =   10350
+      Top             =   1260
+   End
+   Begin VB.Timer TimerCTI 
+      Interval        =   300
+      Left            =   11745
+      Top             =   2400
+   End
+   Begin VB.Timer Timer4 
+      Enabled         =   0   'False
+      Interval        =   59000
+      Left            =   10395
+      Top             =   1920
+   End
+   Begin VB.Timer Timer1 
+      Interval        =   6000
+      Left            =   10155
+      Top             =   540
+   End
+   Begin Threed.SSPanel SSPanel1 
+      Align           =   2  'Align Bottom
+      Height          =   15
+      Left            =   0
+      TabIndex        =   2
+      Top             =   7740
+      Visible         =   0   'False
+      Width           =   12255
+      _ExtentX        =   21616
+      _ExtentY        =   26
+      _Version        =   196610
+      BevelInner      =   1
+      RoundedCorners  =   0   'False
+      FloodShowPct    =   -1  'True
+      Begin VB.TextBox TxtLamaFollowup 
+         Height          =   285
+         Left            =   1050
+         TabIndex        =   17
+         Top             =   945
+         Visible         =   0   'False
+         Width           =   750
+      End
+      Begin VB.TextBox TxtJamSelesaiTelp 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   255
+         Left            =   7605
+         Locked          =   -1  'True
+         MousePointer    =   1  'Arrow
+         TabIndex        =   14
+         TabStop         =   0   'False
+         Text            =   "23:59:59"
+         Top             =   120
+         Visible         =   0   'False
+         Width           =   1350
+      End
+      Begin VB.TextBox TxtJamMulaiTelp 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   255
+         Left            =   5715
+         Locked          =   -1  'True
+         MousePointer    =   1  'Arrow
+         TabIndex        =   13
+         TabStop         =   0   'False
+         Text            =   "00:00:00"
+         Top             =   120
+         Visible         =   0   'False
+         Width           =   1350
+      End
+      Begin VB.TextBox TxtModemAcod 
+         Height          =   285
+         Left            =   420
+         TabIndex        =   10
+         Text            =   "Text8"
+         Top             =   1275
+         Visible         =   0   'False
+         Width           =   750
+      End
+      Begin VB.TextBox TxtAuthPrefix 
+         Height          =   285
+         Left            =   1770
+         TabIndex        =   9
+         Text            =   "Text8"
+         Top             =   2715
+         Visible         =   0   'False
+         Width           =   750
+      End
+      Begin VB.TextBox TxtAuth 
+         Height          =   285
+         Left            =   4110
+         TabIndex        =   8
+         Top             =   90
+         Visible         =   0   'False
+         Width           =   750
+      End
+      Begin VB.TextBox Text6 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   255
+         Left            =   2700
+         Locked          =   -1  'True
+         MousePointer    =   1  'Arrow
+         TabIndex        =   6
+         TabStop         =   0   'False
+         Text            =   "0"
+         Top             =   75
+         Visible         =   0   'False
+         Width           =   390
+      End
+      Begin VB.TextBox TxtCommPort 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   255
+         Left            =   2250
+         Locked          =   -1  'True
+         MousePointer    =   1  'Arrow
+         TabIndex        =   4
+         TabStop         =   0   'False
+         Top             =   75
+         Width           =   390
+      End
+      Begin VB.TextBox Text3 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   285
+         Left            =   12435
+         Locked          =   -1  'True
+         MousePointer    =   1  'Arrow
+         TabIndex        =   3
+         TabStop         =   0   'False
+         Top             =   75
+         Width           =   2685
+      End
+      Begin VB.Label Label1 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Serial Communication"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H000000FF&
+         Height          =   225
+         Left            =   285
+         TabIndex        =   5
+         Top             =   90
+         Width           =   1920
+      End
+   End
+   Begin MSWinsockLib.Winsock Winsock1 
+      Left            =   9465
+      Top             =   1395
+      _ExtentX        =   741
+      _ExtentY        =   741
+      _Version        =   393216
+      RemoteHost      =   "127.0.0.1"
+      RemotePort      =   6000
+   End
+   Begin Threed.SSPanel SSPanel2 
+      Align           =   1  'Align Top
+      Height          =   15
+      Left            =   0
+      TabIndex        =   1
+      Top             =   0
+      Width           =   12255
+      _ExtentX        =   21616
+      _ExtentY        =   26
+      _Version        =   196610
+      BevelWidth      =   2
+      BorderWidth     =   2
+      BevelInner      =   1
+      AutoSize        =   3
+      RoundedCorners  =   0   'False
+      FloodShowPct    =   -1  'True
+      Begin VB.TextBox LblTargetMaster 
+         Height          =   285
+         Left            =   9165
+         TabIndex        =   15
+         Top             =   495
+         Visible         =   0   'False
+         Width           =   2175
+      End
+      Begin Threed.SSCommand SSCommand1 
+         Height          =   615
+         Index           =   3
+         Left            =   2430
+         TabIndex        =   0
+         ToolTipText     =   "Pesan"
+         Top             =   120
+         Width           =   780
+         _ExtentX        =   1376
+         _ExtentY        =   1085
+         _Version        =   196610
+         Font3D          =   1
+         MousePointer    =   16
+         ForeColor       =   12582912
+         BackColor       =   12632256
+         PictureFrames   =   1
+         BackStyle       =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Picture         =   "MDIForm1.frx":13CAB
+         Caption         =   "Msg"
+         AutoSize        =   1
+         Alignment       =   8
+         ButtonStyle     =   3
+         PictureAlignment=   6
+         BevelWidth      =   1
+      End
+      Begin Threed.SSCommand SSCommand1 
+         Height          =   615
+         Index           =   9
+         Left            =   3240
+         TabIndex        =   7
+         ToolTipText     =   "Program Report"
+         Top             =   135
+         Width           =   1200
+         _ExtentX        =   2117
+         _ExtentY        =   1085
+         _Version        =   196610
+         Font3D          =   1
+         MousePointer    =   16
+         ForeColor       =   12582912
+         BackColor       =   12632256
+         PictureFrames   =   1
+         BackStyle       =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Picture         =   "MDIForm1.frx":140FD
+         Caption         =   "Report"
+         AutoSize        =   1
+         Alignment       =   8
+         ButtonStyle     =   3
+         PictureAlignment=   6
+         BevelWidth      =   1
+      End
+      Begin Threed.SSCommand SSCommand1 
+         Height          =   1000
+         Index           =   1
+         Left            =   10
+         TabIndex        =   11
+         ToolTipText     =   "Mgm Program Report"
+         Top             =   500
+         Visible         =   0   'False
+         Width           =   1000
+         _ExtentX        =   1746
+         _ExtentY        =   1773
+         _Version        =   196610
+         Font3D          =   1
+         MousePointer    =   16
+         ForeColor       =   12582912
+         BackColor       =   12632256
+         PictureFrames   =   1
+         BackStyle       =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Picture         =   "MDIForm1.frx":1454F
+         Caption         =   "Daily Report"
+         AutoSize        =   1
+         Alignment       =   8
+         ButtonStyle     =   3
+         PictureAlignment=   6
+         BevelWidth      =   1
+      End
+      Begin Threed.SSCommand SSCommand1 
+         Height          =   615
+         Index           =   2
+         Left            =   5760
+         TabIndex        =   16
+         ToolTipText     =   "Mgm Program Report"
+         Top             =   105
+         Visible         =   0   'False
+         Width           =   1545
+         _ExtentX        =   2725
+         _ExtentY        =   1085
+         _Version        =   196610
+         Font3D          =   1
+         MousePointer    =   16
+         ForeColor       =   12582912
+         BackColor       =   12632256
+         PictureFrames   =   1
+         BackStyle       =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Picture         =   "MDIForm1.frx":149A1
+         Caption         =   "Preembos Report"
+         AutoSize        =   1
+         Alignment       =   8
+         ButtonStyle     =   3
+         PictureAlignment=   6
+         BevelWidth      =   1
+      End
+      Begin Threed.SSCommand SSCommand1 
+         Height          =   615
+         Index           =   4
+         Left            =   560
+         TabIndex        =   19
+         ToolTipText     =   "Mgm Program Report"
+         Top             =   120
+         Width           =   1110
+         _ExtentX        =   1958
+         _ExtentY        =   1085
+         _Version        =   196610
+         Font3D          =   1
+         MousePointer    =   16
+         ForeColor       =   12582912
+         BackColor       =   12632256
+         PictureFrames   =   1
+         BackStyle       =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Picture         =   "MDIForm1.frx":14DF3
+         Caption         =   "Access Data"
+         AutoSize        =   1
+         Alignment       =   8
+         ButtonStyle     =   3
+         PictureAlignment=   6
+         BevelWidth      =   1
+      End
+      Begin Threed.SSCommand SSCommand1 
+         Height          =   615
+         Index           =   5
+         Left            =   7440
+         TabIndex        =   20
+         ToolTipText     =   "Tambah Data Baru"
+         Top             =   120
+         Width           =   1545
+         _ExtentX        =   2725
+         _ExtentY        =   1085
+         _Version        =   196610
+         Font3D          =   1
+         MousePointer    =   16
+         ForeColor       =   12582912
+         BackColor       =   12632256
+         PictureFrames   =   1
+         BackStyle       =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Picture         =   "MDIForm1.frx":15245
+         Caption         =   "&Searching Visit"
+         AutoSize        =   1
+         Alignment       =   8
+         ButtonStyle     =   3
+         PictureAlignment=   6
+         BevelWidth      =   1
+      End
+      Begin Threed.SSCommand SSCommand1 
+         Height          =   615
+         Index           =   6
+         Left            =   1200
+         TabIndex        =   21
+         ToolTipText     =   "Pesan"
+         Top             =   120
+         Width           =   1260
+         _ExtentX        =   2223
+         _ExtentY        =   1085
+         _Version        =   196610
+         Font3D          =   1
+         MousePointer    =   16
+         ForeColor       =   12582912
+         BackColor       =   12632256
+         PictureFrames   =   1
+         BackStyle       =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Picture         =   "MDIForm1.frx":15697
+         Caption         =   "New Search"
+         AutoSize        =   1
+         Alignment       =   8
+         ButtonStyle     =   3
+         PictureAlignment=   6
+         BevelWidth      =   1
+      End
+      Begin Threed.SSCommand SSCommand1 
+         Height          =   615
+         Index           =   7
+         Left            =   5760
+         TabIndex        =   22
+         ToolTipText     =   "Tambah Data Baru"
+         Top             =   135
+         Width           =   1545
+         _ExtentX        =   2725
+         _ExtentY        =   1085
+         _Version        =   196610
+         Font3D          =   1
+         MousePointer    =   16
+         ForeColor       =   12582912
+         BackColor       =   12632256
+         PictureFrames   =   1
+         BackStyle       =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Picture         =   "MDIForm1.frx":164E9
+         Caption         =   "Un Lock Data"
+         AutoSize        =   1
+         Alignment       =   8
+         ButtonStyle     =   3
+         PictureAlignment=   6
+         BevelWidth      =   1
+      End
+      Begin VB.Label Label4 
+         Caption         =   "JANGAN TUTUP PROGRAM INI, UNTUK OTOMATIC BP/POP"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H000000FF&
+         Height          =   735
+         Left            =   0
+         TabIndex        =   23
+         Top             =   120
+         Visible         =   0   'False
+         Width           =   4935
+      End
+      Begin VB.Label LblTarget 
+         BeginProperty Font 
+            Name            =   "Times New Roman"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H000000FF&
+         Height          =   555
+         Left            =   2100
+         TabIndex        =   12
+         Top             =   120
+         Visible         =   0   'False
+         Width           =   5790
+      End
+   End
+   Begin MSCommLib.MSComm MsComLogin 
+      Left            =   8325
+      Top             =   4365
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      _Version        =   393216
+      DTREnable       =   -1  'True
+   End
+   Begin MSCommLib.MSComm MSComm1 
+      Left            =   7245
+      Top             =   4800
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      _Version        =   393216
+      DTREnable       =   -1  'True
+   End
+   Begin Threed.SSPanel SSPanel3 
+      Align           =   2  'Align Bottom
+      Height          =   1170
+      Left            =   0
+      TabIndex        =   18
+      Top             =   7755
+      Width           =   12255
+      _ExtentX        =   21616
+      _ExtentY        =   2064
+      _Version        =   196610
+      BackColor       =   11664853
+      BevelInner      =   1
+      RoundedCorners  =   0   'False
+      FloodShowPct    =   -1  'True
+      Begin VB.TextBox TxtStatus 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00FFC0C0&
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   315
+         Left            =   3510
+         TabIndex        =   53
+         Top             =   720
+         Width           =   4140
+      End
+      Begin TabDlg.SSTab SSTab1 
+         Height          =   375
+         Left            =   14745
+         TabIndex        =   52
+         Top             =   2715
+         Width           =   3045
+         _ExtentX        =   5371
+         _ExtentY        =   661
+         _Version        =   393216
+         Tab             =   1
+         TabHeight       =   520
+         TabCaption(0)   =   "Tab 0"
+         TabPicture(0)   =   "MDIForm1.frx":1693B
+         Tab(0).ControlEnabled=   0   'False
+         Tab(0).ControlCount=   0
+         TabCaption(1)   =   "Tab 1"
+         TabPicture(1)   =   "MDIForm1.frx":16957
+         Tab(1).ControlEnabled=   -1  'True
+         Tab(1).ControlCount=   0
+         TabCaption(2)   =   "Tab 2"
+         Tab(2).ControlEnabled=   0   'False
+         Tab(2).ControlCount=   0
+      End
+      Begin VB.TextBox Text1 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00C0FFFF&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   315
+         Left            =   10440
+         Locked          =   -1  'True
+         MousePointer    =   1  'Arrow
+         TabIndex        =   30
+         TabStop         =   0   'False
+         Top             =   780
+         Width           =   1110
+      End
+      Begin VB.TextBox Text2 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00C0FFFF&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   315
+         Left            =   9240
+         Locked          =   -1  'True
+         MousePointer    =   1  'Arrow
+         TabIndex        =   29
+         TabStop         =   0   'False
+         Top             =   780
+         Width           =   1320
+      End
+      Begin VB.TextBox Text7 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00C0FFFF&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   315
+         Left            =   11490
+         Locked          =   -1  'True
+         MousePointer    =   1  'Arrow
+         TabIndex        =   28
+         TabStop         =   0   'False
+         Top             =   780
+         Width           =   2655
+      End
+      Begin Threed.SSFrame SSFrame1 
+         Height          =   3450
+         Left            =   6345
+         TabIndex        =   24
+         Top             =   2775
+         Width           =   2640
+         _ExtentX        =   4657
+         _ExtentY        =   6085
+         _Version        =   196610
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Begin Threed.SSCommand SSCommand2 
+            Height          =   375
+            Left            =   120
+            TabIndex        =   25
+            Top             =   2880
+            Visible         =   0   'False
+            Width           =   2415
+            _ExtentX        =   4260
+            _ExtentY        =   661
+            _Version        =   196610
+            Caption         =   "&REFRESH"
+         End
+         Begin MSComctlLib.ListView LstGrade 
+            Height          =   3345
+            Left            =   45
+            TabIndex        =   26
+            Top             =   60
+            Width           =   2580
+            _ExtentX        =   4551
+            _ExtentY        =   5900
+            View            =   3
+            Sorted          =   -1  'True
+            LabelWrap       =   -1  'True
+            HideSelection   =   -1  'True
+            FullRowSelect   =   -1  'True
+            GridLines       =   -1  'True
+            _Version        =   393217
+            ForeColor       =   -2147483640
+            BackColor       =   16761087
+            BorderStyle     =   1
+            Appearance      =   1
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Tahoma"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            NumItems        =   0
+         End
+         Begin VB.Label Label3 
+            Caption         =   "Label3"
+            Height          =   375
+            Left            =   120
+            TabIndex        =   27
+            Top             =   3000
+            Width           =   2295
+         End
+      End
+      Begin TDBDate6Ctl.TDBDate TDBDate1 
+         Height          =   315
+         Left            =   8040
+         TabIndex        =   31
+         TabStop         =   0   'False
+         Top             =   780
+         Width           =   1230
+         _Version        =   65536
+         _ExtentX        =   2170
+         _ExtentY        =   556
+         Calendar        =   "MDIForm1.frx":16973
+         Caption         =   "MDIForm1.frx":16A8B
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         DropDown        =   "MDIForm1.frx":16AF7
+         Keys            =   "MDIForm1.frx":16B15
+         Spin            =   "MDIForm1.frx":16B73
+         AlignHorizontal =   0
+         AlignVertical   =   2
+         Appearance      =   0
+         BackColor       =   12648447
+         BorderStyle     =   1
+         BtnPositioning  =   0
+         ClipMode        =   0
+         CursorPosition  =   0
+         DataProperty    =   0
+         DisplayFormat   =   "dd/mm/yyyy"
+         EditMode        =   0
+         Enabled         =   -1
+         ErrorBeep       =   0
+         FirstMonth      =   4
+         ForeColor       =   8388608
+         Format          =   "dd/mm/yyyy"
+         HighlightText   =   1
+         IMEMode         =   3
+         MarginBottom    =   1
+         MarginLeft      =   1
+         MarginRight     =   1
+         MarginTop       =   1
+         MaxDate         =   2958465
+         MinDate         =   -657434
+         MousePointer    =   1
+         MoveOnLRKey     =   0
+         OLEDragMode     =   0
+         OLEDropMode     =   0
+         PromptChar      =   "_"
+         ReadOnly        =   -1
+         ShowContextMenu =   -1
+         ShowLiterals    =   0
+         TabAction       =   0
+         Text            =   "__/__/____"
+         ValidateMode    =   0
+         ValueVT         =   1
+         Value           =   37475
+         CenturyMode     =   0
+      End
+      Begin Threed.SSPanel SSPanel4 
+         Height          =   450
+         Left            =   3480
+         TabIndex        =   32
+         Top             =   120
+         Width           =   4485
+         _ExtentX        =   7911
+         _ExtentY        =   794
+         _Version        =   196610
+         BackColor       =   11664853
+         BevelInner      =   1
+         RoundedCorners  =   0   'False
+         FloodShowPct    =   -1  'True
+         Begin VB.ComboBox CmbNo 
+            Height          =   315
+            Left            =   150
+            TabIndex        =   33
+            Top             =   1710
+            Width           =   1590
+         End
+         Begin Threed.SSCommand CmdCancel 
+            Cancel          =   -1  'True
+            Height          =   360
+            Left            =   1830
+            TabIndex        =   34
+            Top             =   1605
+            Width           =   600
+            _ExtentX        =   1058
+            _ExtentY        =   635
+            _Version        =   196610
+            Font3D          =   5
+            MousePointer    =   16
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Tahoma"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Caption         =   "&Clear"
+            ButtonStyle     =   2
+            BevelWidth      =   1
+         End
+         Begin Threed.SSCommand CmdNo 
+            Height          =   480
+            Index           =   2
+            Left            =   630
+            TabIndex        =   35
+            TabStop         =   0   'False
+            Top             =   1410
+            Width           =   480
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   196610
+            Font3D          =   2
+            MousePointer    =   16
+            ForeColor       =   192
+            BackColor       =   12632256
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Arial"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            Caption         =   "2"
+            ButtonStyle     =   2
+         End
+         Begin Threed.SSCommand CmdNo 
+            Height          =   480
+            Index           =   1
+            Left            =   105
+            TabIndex        =   36
+            TabStop         =   0   'False
+            Top             =   1410
+            Width           =   480
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   196610
+            Font3D          =   2
+            MousePointer    =   16
+            ForeColor       =   192
+            BackColor       =   12632256
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Arial"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            Caption         =   "1"
+            ButtonStyle     =   2
+         End
+         Begin Threed.SSCommand CmdNo 
+            Height          =   480
+            Index           =   3
+            Left            =   1140
+            TabIndex        =   37
+            TabStop         =   0   'False
+            Top             =   1410
+            Width           =   480
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   196610
+            Font3D          =   2
+            MousePointer    =   16
+            ForeColor       =   192
+            BackColor       =   12632256
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Arial"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            Caption         =   "3"
+            ButtonStyle     =   2
+         End
+         Begin Threed.SSCommand CmdNo 
+            Height          =   480
+            Index           =   5
+            Left            =   2160
+            TabIndex        =   38
+            TabStop         =   0   'False
+            Top             =   1410
+            Width           =   480
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   196610
+            Font3D          =   2
+            MousePointer    =   16
+            ForeColor       =   192
+            BackColor       =   12632256
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Arial"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            Caption         =   "5"
+            ButtonStyle     =   2
+         End
+         Begin Threed.SSCommand CmdNo 
+            Height          =   480
+            Index           =   4
+            Left            =   1650
+            TabIndex        =   39
+            TabStop         =   0   'False
+            Top             =   1410
+            Width           =   480
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   196610
+            Font3D          =   2
+            MousePointer    =   16
+            ForeColor       =   192
+            BackColor       =   12632256
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Arial"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            Caption         =   "4"
+            ButtonStyle     =   2
+         End
+         Begin Threed.SSCommand CmdNo 
+            Height          =   480
+            Index           =   6
+            Left            =   120
+            TabIndex        =   40
+            TabStop         =   0   'False
+            Top             =   1935
+            Width           =   480
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   196610
+            Font3D          =   2
+            MousePointer    =   16
+            ForeColor       =   192
+            BackColor       =   12632256
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Arial"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            Caption         =   "6"
+            ButtonStyle     =   2
+         End
+         Begin Threed.SSCommand CmdNo 
+            Height          =   480
+            Index           =   8
+            Left            =   1140
+            TabIndex        =   41
+            TabStop         =   0   'False
+            Top             =   1935
+            Width           =   480
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   196610
+            Font3D          =   2
+            MousePointer    =   16
+            ForeColor       =   192
+            BackColor       =   12632256
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Arial"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            Caption         =   "8"
+            ButtonStyle     =   2
+         End
+         Begin Threed.SSCommand CmdNo 
+            Height          =   480
+            Index           =   7
+            Left            =   630
+            TabIndex        =   42
+            TabStop         =   0   'False
+            Top             =   1935
+            Width           =   480
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   196610
+            Font3D          =   2
+            MousePointer    =   16
+            ForeColor       =   192
+            BackColor       =   12632256
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Arial"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            Caption         =   "7"
+            ButtonStyle     =   2
+         End
+         Begin Threed.SSCommand CmdNo 
+            Height          =   480
+            Index           =   9
+            Left            =   1650
+            TabIndex        =   43
+            TabStop         =   0   'False
+            Top             =   1935
+            Width           =   480
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   196610
+            Font3D          =   2
+            MousePointer    =   16
+            ForeColor       =   192
+            BackColor       =   12632256
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Arial"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            Caption         =   "9"
+            ButtonStyle     =   2
+         End
+         Begin Threed.SSCommand CmdNo 
+            Height          =   480
+            Index           =   0
+            Left            =   2175
+            TabIndex        =   44
+            TabStop         =   0   'False
+            Top             =   1935
+            Width           =   480
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   196610
+            Font3D          =   2
+            MousePointer    =   16
+            ForeColor       =   192
+            BackColor       =   12632256
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Arial"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            Caption         =   "0"
+            ButtonStyle     =   2
+         End
+         Begin Threed.SSCommand CmdBintang 
+            Height          =   480
+            Left            =   2685
+            TabIndex        =   45
+            TabStop         =   0   'False
+            Top             =   1410
+            Width           =   480
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   196610
+            Font3D          =   2
+            MousePointer    =   16
+            ForeColor       =   192
+            BackColor       =   12632256
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Arial"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            Caption         =   "*"
+            ButtonStyle     =   2
+         End
+         Begin Threed.SSCommand CmdPager 
+            Height          =   480
+            Left            =   2700
+            TabIndex        =   46
+            TabStop         =   0   'False
+            Top             =   1935
+            Width           =   480
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   196610
+            Font3D          =   2
+            MousePointer    =   16
+            ForeColor       =   192
+            BackColor       =   12632256
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Arial"
+               Size            =   12
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            Caption         =   "#"
+            ButtonStyle     =   2
+         End
+         Begin Threed.SSCommand CmdHangUp 
+            Height          =   555
+            Left            =   3225
+            TabIndex        =   47
+            ToolTipText     =   "HangUp"
+            Top             =   1935
+            Width           =   645
+            _ExtentX        =   1138
+            _ExtentY        =   979
+            _Version        =   196610
+            MousePointer    =   16
+            PictureFrames   =   1
+            Picture         =   "MDIForm1.frx":16B9B
+            Caption         =   "Hangup"
+            Alignment       =   8
+            ButtonStyle     =   4
+            PictureAlignment=   11
+            BevelWidth      =   0
+         End
+         Begin MSComctlLib.ListView LstInformation 
+            Height          =   1020
+            Left            =   6240
+            TabIndex        =   49
+            Top             =   1380
+            Width           =   4350
+            _ExtentX        =   7673
+            _ExtentY        =   1799
+            View            =   3
+            LabelWrap       =   -1  'True
+            HideSelection   =   -1  'True
+            FullRowSelect   =   -1  'True
+            GridLines       =   -1  'True
+            _Version        =   393217
+            ForeColor       =   -2147483640
+            BackColor       =   -2147483643
+            BorderStyle     =   1
+            Appearance      =   1
+            NumItems        =   0
+         End
+         Begin Threed.SSCommand CmdCall 
+            Height          =   540
+            Left            =   3225
+            TabIndex        =   51
+            ToolTipText     =   "Call"
+            Top             =   1380
+            Width           =   630
+            _ExtentX        =   1111
+            _ExtentY        =   953
+            _Version        =   196610
+            MousePointer    =   16
+            PictureFrames   =   1
+            Picture         =   "MDIForm1.frx":16E20
+            Caption         =   "Call"
+            Alignment       =   8
+            ButtonStyle     =   4
+            PictureAlignment=   11
+            BevelWidth      =   0
+         End
+      End
+      Begin Threed.SSCommand SSCommand1 
+         Height          =   660
+         Index           =   0
+         Left            =   240
+         TabIndex        =   50
+         ToolTipText     =   "Find.."
+         Top             =   120
+         Width           =   660
+         _ExtentX        =   1164
+         _ExtentY        =   1164
+         _Version        =   196610
+         Font3D          =   1
+         MousePointer    =   16
+         ForeColor       =   192
+         BackColor       =   -2147483638
+         PictureMaskColor=   255
+         PictureFrames   =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Picture         =   "MDIForm1.frx":172A7
+         AutoSize        =   1
+         Alignment       =   8
+         ButtonStyle     =   3
+         PictureAlignment=   0
+         BevelWidth      =   1
+      End
+      Begin Threed.SSCommand SSCommand1 
+         Height          =   660
+         Index           =   8
+         Left            =   1080
+         TabIndex        =   54
+         ToolTipText     =   "Blok Data..."
+         Top             =   120
+         Width           =   660
+         _ExtentX        =   1164
+         _ExtentY        =   1164
+         _Version        =   196610
+         Font3D          =   1
+         MousePointer    =   16
+         ForeColor       =   192
+         BackColor       =   -2147483638
+         PictureMaskColor=   255
+         PictureFrames   =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Picture         =   "MDIForm1.frx":17794
+         AutoSize        =   1
+         Alignment       =   8
+         ButtonStyle     =   3
+         PictureAlignment=   6
+         BevelWidth      =   1
+      End
+      Begin Threed.SSCommand SSCommand1 
+         Height          =   660
+         Index           =   10
+         Left            =   1920
+         TabIndex        =   55
+         ToolTipText     =   "Blok Data..."
+         Top             =   120
+         Width           =   660
+         _ExtentX        =   1164
+         _ExtentY        =   1164
+         _Version        =   196610
+         Font3D          =   1
+         MousePointer    =   16
+         ForeColor       =   192
+         BackColor       =   -2147483638
+         PictureMaskColor=   255
+         PictureFrames   =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Picture         =   "MDIForm1.frx":17D1A
+         AutoSize        =   1
+         Alignment       =   8
+         ButtonStyle     =   3
+         PictureAlignment=   6
+         BevelWidth      =   1
+      End
+      Begin Threed.SSCommand SSCommand1 
+         Height          =   660
+         Index           =   11
+         Left            =   2760
+         TabIndex        =   56
+         ToolTipText     =   "Blok Data..."
+         Top             =   120
+         Width           =   660
+         _ExtentX        =   1164
+         _ExtentY        =   1164
+         _Version        =   196610
+         Font3D          =   1
+         MousePointer    =   16
+         ForeColor       =   192
+         BackColor       =   -2147483638
+         PictureMaskColor=   255
+         PictureFrames   =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Picture         =   "MDIForm1.frx":1825B
+         AutoSize        =   1
+         Alignment       =   8
+         ButtonStyle     =   3
+         PictureAlignment=   6
+         BevelWidth      =   1
+      End
+      Begin VB.Label Label9 
+         BackStyle       =   0  'Transparent
+         Height          =   195
+         Left            =   8340
+         TabIndex        =   63
+         Top             =   150
+         Width           =   4965
+      End
+      Begin VB.Label Label10 
+         BackStyle       =   0  'Transparent
+         Height          =   195
+         Left            =   13380
+         TabIndex        =   62
+         Top             =   150
+         Width           =   4605
+      End
+      Begin VB.Label Lbltargetspv 
+         BackStyle       =   0  'Transparent
+         ForeColor       =   &H000000FF&
+         Height          =   345
+         Left            =   8040
+         TabIndex        =   61
+         Top             =   570
+         Width           =   11265
+      End
+      Begin VB.Label Label8 
+         BackColor       =   &H00B1FDD5&
+         Caption         =   "&Report"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   255
+         Left            =   2880
+         TabIndex        =   60
+         Top             =   840
+         Width           =   495
+      End
+      Begin VB.Label Label7 
+         BackColor       =   &H00B1FDD5&
+         Caption         =   "&Broadcast"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   255
+         Left            =   1920
+         TabIndex        =   59
+         Top             =   840
+         Width           =   855
+      End
+      Begin VB.Label Label6 
+         BackColor       =   &H00B1FDD5&
+         Caption         =   "&Block Data"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   255
+         Left            =   1080
+         TabIndex        =   58
+         Top             =   840
+         Width           =   855
+      End
+      Begin VB.Label Label5 
+         BackColor       =   &H00B1FDD5&
+         Caption         =   "&Follow Up"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   255
+         Left            =   240
+         TabIndex        =   57
+         Top             =   840
+         Width           =   855
+      End
+      Begin VB.Label Label2 
+         Caption         =   "-"
+         Height          =   465
+         Left            =   315
+         TabIndex        =   48
+         Top             =   735
+         Visible         =   0   'False
+         Width           =   2175
+      End
+   End
+   Begin MSWinsockLib.Winsock WskCTI 
+      Left            =   9465
+      Top             =   1890
+      _ExtentX        =   741
+      _ExtentY        =   741
+      _Version        =   393216
+      RemoteHost      =   "127.0.0.1"
+      RemotePort      =   18000
+   End
+   Begin VB.Menu mnbar 
+      Caption         =   "&File"
+      Index           =   0
+      Begin VB.Menu MnFile 
+         Caption         =   "&Log Off"
+         Index           =   0
+         Visible         =   0   'False
+      End
+      Begin VB.Menu MnFile 
+         Caption         =   "-"
+         Index           =   1
+      End
+      Begin VB.Menu MnFile 
+         Caption         =   "-"
+         Index           =   2
+         Visible         =   0   'False
+      End
+      Begin VB.Menu MnFile 
+         Caption         =   "&Status TSE For Spv"
+         Index           =   3
+         Visible         =   0   'False
+      End
+      Begin VB.Menu MnFile 
+         Caption         =   "-"
+         Index           =   4
+         Visible         =   0   'False
+      End
+      Begin VB.Menu MnFile 
+         Caption         =   "&Change Password"
+         Index           =   5
+      End
+      Begin VB.Menu MnFile 
+         Caption         =   "-"
+         Index           =   6
+         Visible         =   0   'False
+      End
+      Begin VB.Menu MnFile 
+         Caption         =   "E&xit"
+         Index           =   7
+      End
+   End
+   Begin VB.Menu mnbar 
+      Caption         =   "&Master"
+      Index           =   1
+      Begin VB.Menu mnagent 
+         Caption         =   "&TeleCollection"
+      End
+      Begin VB.Menu mnspv 
+         Caption         =   "&Supervisor"
+      End
+      Begin VB.Menu MnTarget 
+         Caption         =   "&Target"
+         Visible         =   0   'False
+      End
+      Begin VB.Menu MnDsr 
+         Caption         =   "Daily Submission Report"
+         Visible         =   0   'False
+      End
+      Begin VB.Menu MnWpi 
+         Caption         =   "&Weekly Performance Indicator"
+         Visible         =   0   'False
+      End
+      Begin VB.Menu MnTglSeThn 
+         Caption         =   "Set Tang&gal Setahun"
+         Visible         =   0   'False
+      End
+      Begin VB.Menu test1 
+         Caption         =   "-"
+      End
+      Begin VB.Menu MnAccDecSub 
+         Caption         =   "Accept Decline Submission"
+         Visible         =   0   'False
+      End
+      Begin VB.Menu mnNact 
+         Caption         =   "&Status Call"
+      End
+      Begin VB.Menu MnCCode 
+         Caption         =   "Com&plaint Code"
+         Visible         =   0   'False
+      End
+      Begin VB.Menu mndata 
+         Caption         =   "&Data Quality"
+         Visible         =   0   'False
+      End
+      Begin VB.Menu mnreason 
+         Caption         =   "&Uncontacted Status Call "
+      End
+      Begin VB.Menu mncontacted 
+         Caption         =   "&Contacted Status Call"
+      End
+      Begin VB.Menu mndata2 
+         Caption         =   "&Campaign"
+      End
+      Begin VB.Menu mnProduct 
+         Caption         =   "&Product"
+      End
+      Begin VB.Menu mnPr 
+         Caption         =   "Set Product &Knowledge"
+         Visible         =   0   'False
+      End
+      Begin VB.Menu MnBb 
+         Caption         =   "Bulletin &Board"
+         Visible         =   0   'False
+      End
+      Begin VB.Menu mnuProdInfo 
+         Caption         =   "Product Info"
+         Visible         =   0   'False
+      End
+      Begin VB.Menu sbgaris 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnblack 
+         Caption         =   "Black List No telpon"
+      End
+      Begin VB.Menu subupdate 
+         Caption         =   "Update status"
+      End
+      Begin VB.Menu MnBlokData 
+         Caption         =   "Blok Data"
+         Visible         =   0   'False
+         Begin VB.Menu mnblokspv 
+            Caption         =   "&Schedule Blok Data"
+         End
+      End
+      Begin VB.Menu nmblokdatatl 
+         Caption         =   "Blok Data TL"
+         Begin VB.Menu nmSchLocktl 
+            Caption         =   "Schedule Blok Data  TL"
+         End
+      End
+      Begin VB.Menu mnrptsms 
+         Caption         =   "Report SMS NEW"
+      End
+      Begin VB.Menu separ 
+         Caption         =   "-"
+      End
+      Begin VB.Menu VSMS 
+         Caption         =   "Verify SMS"
+      End
+      Begin VB.Menu smsblast 
+         Caption         =   "SMSBlaster"
+      End
+      Begin VB.Menu setspv 
+         Caption         =   "Set Target From SPV"
+      End
+      Begin VB.Menu nmg10 
+         Caption         =   "-"
+      End
+      Begin VB.Menu nmlistsmsscript 
+         Caption         =   "List sms script"
+      End
+      Begin VB.Menu nmapprovreject 
+         Caption         =   "Approved and rejected sms"
+      End
+      Begin VB.Menu MNUOFFER 
+         Caption         =   "Form Offering"
+      End
+      Begin VB.Menu mnsubmarkup 
+         Caption         =   "Upload Data MarkUp"
+      End
+      Begin VB.Menu mnsubahstsacc 
+         Caption         =   "Ubah Status Account"
+      End
+      Begin VB.Menu mnuploadskip 
+         Caption         =   "Upload Skip Tracer"
+      End
+      Begin VB.Menu nmg 
+         Caption         =   "-"
+      End
+      Begin VB.Menu nmformceksts 
+         Caption         =   "Form cek status acc"
+      End
+      Begin VB.Menu nmblastsmsexcel 
+         Caption         =   "Send SMS Blast Via Excel"
+      End
+   End
+   Begin VB.Menu mnbar 
+      Caption         =   "&Distribusi Data"
+      Index           =   2
+      Visible         =   0   'False
+      Begin VB.Menu mnup 
+         Caption         =   "Distribusi &Data Upload"
+      End
+      Begin VB.Menu mnhslupload 
+         Caption         =   "&Hasil Upload"
+      End
+      Begin VB.Menu mndist 
+         Caption         =   "Hasil &Distribusi"
+         Visible         =   0   'False
+      End
+   End
+   Begin VB.Menu mnbar 
+      Caption         =   "&Pesan"
+      Index           =   3
+      Visible         =   0   'False
+      Begin VB.Menu mnsend 
+         Caption         =   "&Kirim"
+      End
+      Begin VB.Menu mnbaca 
+         Caption         =   "&Baca"
+      End
+   End
+   Begin VB.Menu mnbar 
+      Caption         =   "&About"
+      Index           =   4
+      Begin VB.Menu mnProductKnowLedge 
+         Caption         =   "Product &Knowledge"
+         Visible         =   0   'False
+      End
+      Begin VB.Menu mnabout 
+         Caption         =   "&Tentang Kami"
+      End
+   End
+   Begin VB.Menu mnbar 
+      Caption         =   "Distribusi S&TP"
+      Index           =   5
+      Visible         =   0   'False
+      Begin VB.Menu msdisstp 
+         Caption         =   "Distribusi Data STP"
+      End
+   End
+   Begin VB.Menu mnbar 
+      Caption         =   "Distribusi &SPV"
+      Index           =   6
+      Visible         =   0   'False
+      Begin VB.Menu UPTMGM 
+         Caption         =   "Distribusi Data MGM"
+      End
+      Begin VB.Menu UPTSTP 
+         Caption         =   "Distribusi STP"
+      End
+   End
+   Begin VB.Menu mnbar 
+      Caption         =   "Distr&ibusi Data Tarik"
+      Index           =   7
+      Visible         =   0   'False
+      Begin VB.Menu TarikMGM 
+         Caption         =   "Data CH (Player)"
+      End
+      Begin VB.Menu TarikLeads 
+         Caption         =   "Data Leads"
+      End
+      Begin VB.Menu TarikStp 
+         Caption         =   "Data STP"
+      End
+   End
+   Begin VB.Menu mnbar 
+      Caption         =   "&Duplikasi"
+      Index           =   8
+      Visible         =   0   'False
+      Begin VB.Menu MNDUPLIKASI 
+         Caption         =   "Duplikasi Leads"
+      End
+      Begin VB.Menu MNDUPLIKASICH 
+         Caption         =   "Duplikasi CH"
+      End
+   End
+   Begin VB.Menu mnbar 
+      Caption         =   "Pending &Duplikasi"
+      Index           =   9
+      Visible         =   0   'False
+      Begin VB.Menu MnPendingCh 
+         Caption         =   "Pending CH"
+      End
+      Begin VB.Menu MnPendingLeads 
+         Caption         =   "Pending Leads"
+      End
+   End
+   Begin VB.Menu mnbar 
+      Caption         =   "Kurir"
+      Index           =   10
+      Visible         =   0   'False
+      Begin VB.Menu mnkrmaplikasi 
+         Caption         =   "Kirim Aplikasi"
+      End
+   End
+   Begin VB.Menu mnbar 
+      Caption         =   "Report"
+      Index           =   11
+      Begin VB.Menu MnReportTracking 
+         Caption         =   "Report Tracking"
+      End
+      Begin VB.Menu MnVisit 
+         Caption         =   "Visit Status"
+      End
+      Begin VB.Menu nmReportSms 
+         Caption         =   "Report SMS"
+      End
+   End
+End
+Attribute VB_Name = "MDIForm1"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+Dim m_TelpTglAwal As String
+Dim m_TelpTglAkhir As String
+Dim m_TelpAgent As String
+Dim f_InsertTelp As Boolean
+Dim M_LOGINRS As ADODB.Recordset
+Public TXT As Integer
+Public m_TelpUserId As String
+Public m_TelpNoTelp As String
+Public m_faxName As String
+Public B_FAX As Boolean
+Public m_targetview As Boolean
+Public ParameterCTI  As String
+Public M_DATA As New CLS_FRMCUST_CC_MGM
+Dim COUNTER As Integer
+Public Kalimat1 As String
+Public PANJANG As Double
+Dim satu As String
+Dim dua As String
+Dim tiga As String
+Dim empat As String
+
+
+'===============@@ 6-12-2010 buat tooltip kalo ada sms yang masuk ===========================
+    Private Declare Function CreateWindowEx Lib "user32" _
+    Alias "CreateWindowExA" (ByVal dwExStyle As Long, _
+    ByVal lpClassName As String, ByVal lpWindowName As _
+    String, ByVal dwStyle As Long, ByVal X As Long, _
+    ByVal Y As Long, ByVal nWidth As Long, ByVal nHeight _
+    As Long, ByVal hWndParent As Long, ByVal hMenu _
+    As Long, ByVal hInstance As Long, lpParam As Any) _
+    As Long
+    
+    Private Declare Function SetWindowPos Lib "user32" _
+    (ByVal hwnd As Long, ByVal hWndInsertAfter As Long, _
+    ByVal X As Long, ByVal Y As Long, ByVal cx As Long, _
+    ByVal cy As Long, ByVal wFlags As Long) As Long
+    
+    Private Declare Function SendMessage Lib "user32" _
+    Alias "SendMessageA" (ByVal hwnd As Long, _
+    ByVal wMsg As Long, ByVal wParam As Long, _
+    lParam As Any) As Long
+    
+    Private Declare Function GetClientRect Lib "user32" _
+    (ByVal hwnd As Long, lpRect As RECT) As Long
+    
+    Private Declare Function DestroyWindow Lib "user32" _
+    (ByVal hwnd As Long) As Long
+    
+    'UDT (User Defined Type) RECT.
+    'Digunakan untuk pengaturan batas dari jendela tooltip.
+    Private Type RECT
+      Left As Long
+      Top As Long
+      Right As Long
+      Bottom As Long
+    End Type
+    
+    'UDT TOOLINFO.
+    'Digunakan untuk menentukan semua tanda yang diperlukan
+    'untuk membuat jendela tooltip.
+    Private Type TOOLINFO
+      cbSize As Long
+      uFlags As Long
+      hwnd As Long
+      uid As Long
+      RECT As RECT
+      hinst As Long
+      lpszText As String
+      lParam As Long
+    End Type
+    
+    'Sebuah konstanta yang digunakan untuk menghubungkan
+    'ke fungsi API yang bernama: CreateWindowEx.
+    'Hal ini untuk menandakan nilai default yang digunakan.
+    Private Const CW_USEDEFAULT = &H80000000
+    
+    'Konstanta untuk fungsi API bernama: SetWindowPosition.
+    Private Const SWP_NOMOVE = &H2
+    Private Const SWP_NOACTIVATE = &H10
+    Private Const SWP_NOSIZE = &H1
+    Private Const HWND_NOTOPMOST = -2
+    Private Const HWND_TOP = 0
+    Private Const HWND_TOPMOST = -1
+    Private Const HWND_BOTTOM = 1
+    
+    'Konstanta untuk menentukan gaya dari jendela tooltip.
+    Private Const WS_POPUP = &H80000000
+    Private Const WS_EX_TOPMOST = &H8&
+    
+    'Konstanta yang digunakan dengan fungsi API SendMessage
+    'untuk mendefinisikan pesan private.
+    Private Const WM_USER = &H400
+    
+    'Messages yang digunakan untuk menentukan durasi waktu 'dari tooltips. Tidak digunakan di sini.
+    Private Const TTDT_AUTOMATIC = 0
+    Private Const TTDT_AUTOPOP = 2
+    Private Const TTDT_INITIAL = 3
+    Private Const TTDT_RESHOW = 1
+    
+    'Semua "penanda" untuk jendela tooltip.
+    Private Const TTF_ABSOLUTE = &H80
+    Private Const TTF_CENTERTIP = &H2
+    Private Const TTF_DI_SETITEM = &H8000
+    Private Const TTF_IDISHWND = &H1
+    Private Const TTF_RTLREADING = &H4
+    Private Const TTF_SUBCLASS = &H10
+    Private Const TTF_TRACK = &H20
+    Private Const TTF_TRANSPARENT = &H100
+    
+    'Semua pesan yang tersedia untuk tooltip Windows.
+    Private Const TTM_ACTIVATE = (WM_USER + 1)
+    Private Const TTM_ADDTOOLA = (WM_USER + 4)
+    Private Const TTM_ADDTOOLW = (WM_USER + 50)
+    Private Const TTM_ADJUSTRECT = (WM_USER + 31)
+    Private Const TTM_DELTOOLA = (WM_USER + 5)
+    Private Const TTM_DELTOOLW = (WM_USER + 51)
+    Private Const TTM_ENUMTOOLSA = (WM_USER + 14)
+    Private Const TTM_ENUMTOOLSW = (WM_USER + 58)
+    Private Const TTM_GETBUBBLESIZE = (WM_USER + 30)
+    Private Const TTM_GETCURRENTTOOLA = (WM_USER + 15)
+    Private Const TTM_GETCURRENTTOOLW = (WM_USER + 59)
+    Private Const TTM_GETDELAYTIME = (WM_USER + 21)
+    Private Const TTM_GETMARGIN = (WM_USER + 27)
+    Private Const TTM_GETMAXTIPWIDTH = (WM_USER + 25)
+    Private Const TTM_GETTEXTA = (WM_USER + 11)
+    Private Const TTM_GETTEXTW = (WM_USER + 56)
+    Private Const TTM_GETTIPBKCOLOR = (WM_USER + 22)
+    Private Const TTM_GETTIPTEXTCOLOR = (WM_USER + 23)
+    Private Const TTM_GETTOOLCOUNT = (WM_USER + 13)
+    Private Const TTM_GETTOOLINFOA = (WM_USER + 8)
+    Private Const TTM_GETTOOLINFOW = (WM_USER + 53)
+    Private Const TTM_HITTESTA = (WM_USER + 10)
+    Private Const TTM_HITTESTW = (WM_USER + 55)
+    Private Const TTM_NEWTOOLRECTA = (WM_USER + 6)
+    Private Const TTM_NEWTOOLRECTW = (WM_USER + 52)
+    Private Const TTM_POP = (WM_USER + 28)
+    Private Const TTM_RELAYEVENT = (WM_USER + 7)
+    Private Const TTM_SETDELAYTIME = (WM_USER + 3)
+    Private Const TTM_SETMARGIN = (WM_USER + 26)
+    Private Const TTM_SETMAXTIPWIDTH = (WM_USER + 24)
+    Private Const TTM_SETTIPBKCOLOR = (WM_USER + 19)
+    Private Const TTM_SETTIPTEXTCOLOR = (WM_USER + 20)
+    Private Const TTM_SETTITLEA = (WM_USER + 32)
+    Private Const TTM_SETTITLEW = (WM_USER + 33)
+    Private Const TTM_SETTOOLINFOA = (WM_USER + 9)
+    Private Const TTM_SETTOOLINFOW = (WM_USER + 54)
+    Private Const TTM_TRACKACTIVATE = (WM_USER + 17)
+    Private Const TTM_TRACKPOSITION = (WM_USER + 18)
+    Private Const TTM_UPDATE = (WM_USER + 29)
+    Private Const TTM_UPDATETIPTEXTA = (WM_USER + 12)
+    Private Const TTM_UPDATETIPTEXTW = (WM_USER + 57)
+    Private Const TTM_WINDOWFROMPOINT = (WM_USER + 16)
+    
+    'Konstanta untuk menentukan gaya dari jendela tooltip.
+    'Selalu tip, walalupun jika jendela utama tidak aktif.
+    Private Const TTS_ALWAYSTIP = &H1
+    'Menggunakan gaya balon tooltip.
+    Private Const TTS_BALLOON = &H40
+    'Win98 and up - jangan gunakan sliding tooltips.
+    Private Const TTS_NOANIMATE = &H10
+    'Win2K and up - jangan hilangkan tooltips.
+    Private Const TTS_NOFADE = &H20
+    'Mencegah Windows dari penghapusan karakter ampersand 'apapun di dalam string tooltip. Tanpa penanda ini, 'Windows otomatis akan menghapus karakter ampersand 'dari string tersebut. Hal ini dilakukan untuk 'mengizinkan string yang sama dapat digunakan
+    'sebagai teks dari tooltip, dan sebagai tulisan dari 'sebuah control.
+    Private Const TTS_NOPREFIX = &H2
+    
+    'Class untuk dua tooltip yang berbeda.
+    Private Const TOOLTIPS_CLASS = "tooltips_class"
+    Private Const TOOLTIPS_CLASSA = "tooltips_class32"
+    
+    'Sebuah variabel bertipe Long untuk menyimpan hwnd '(window handle) dari jendela tooltip yang dibuat di 'contoh ini.Hal ini akan menjadi sebuah array bertipe 'Long jika kita membuat tooltip Windows untuk banyak 'control atau banyak jendela.
+    Dim hwndTT As Long
+'===============@@ 6-12-2010 buat tooltip kalo ada sms yang masuk ===========================
+
+
+
+Private Sub Command1_Click()
+'Frm_DailyAplikasi.Show
+End Sub
+
+Private Sub CmdAddLeads_Click()
+'        With FrmEntryReff
+'            .TxtIdReff.Text = "Inbound Leads"
+'            .TxtIdReff.Enabled = False
+'             .Show vbModal
+'             If .okReff Then
+'             Else
+'             End If
+'        End With
+End Sub
+
+Private Sub Label10_Click()
+    If UCase(Text1) <> "ADMIN" Then
+        Load frm_showsms
+        frm_showsms.Show vbModal
+    End If
+End Sub
+
+Private Sub Label9_Click()
+    If UCase(Text1) <> "ADMIN" Then
+        Load frm_showsms
+        frm_showsms.Show vbModal
+    End If
+
+End Sub
+
+Private Sub LstGrade_ColumnClick(ByVal ColumnHeader As MSComctlLib.ColumnHeader)
+MDIForm1.LstGrade.SortKey = ColumnHeader.Index - 1
+   MDIForm1.LstGrade.Sorted = True
+End Sub
+
+Private Sub LstGrade_DblClick()
+Dim M_OBJRS As ADODB.Recordset
+Dim CMDSQL As String
+If LstGrade.ListItems.Count = 0 Then
+Else
+    shedulePTP_Show = True
+    If UCase(MDIForm1.Text2.Text) = "AGENT" Then
+        If UCase(MDIForm1.Text1.Text) <> Trim(UCase(MDIForm1.LstGrade.SelectedItem.SubItems(3))) Then
+            MsgBox "Anda Tidak Berhak Untuk Mengedit Data Ini", vbCritical + vbOKOnly, "Aplikasi"
+            Exit Sub
+        End If
+    End If
+    If UCase(MDIForm1.Text2.Text) = "SUPERVISOR" Then
+    'If UCase(MDIForm1.Text2.Text) = "TEAMLEADER" Then
+        Dim PO_AGENT As String
+        If VIEW_MGMDATA.Combo1(0).Text = "PULLOUT" Then
+            Set M_OBJRS = New ADODB.Recordset
+            M_OBJRS.CursorLocation = adUseClient
+            CMDSQL = "SELECT PO_Agent FROM mgm where CUSTID='" & MDIForm1.LstGrade.SelectedItem.SubItems(1) & "'"
+            M_OBJRS.Open CMDSQL, M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+            PO_AGENT = M_OBJRS!PO_AGENT
+            Set M_OBJRS = Nothing
+        Else
+            PO_AGENT = MDIForm1.LstGrade.SelectedItem.SubItems(3)
+        End If
+    
+        Set M_OBJRS = New ADODB.Recordset
+        M_OBJRS.CursorLocation = adUseClient
+        CMDSQL = "SELECT USERID FROM usertbl WHERE TEAM ='" + MDIForm1.Text1.Text + "' AND USERID = '" + PO_AGENT + "'"
+        M_OBJRS.Open CMDSQL, M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+        If M_OBJRS.RecordCount <> 0 Then
+        Else
+            MsgBox "Data Ini Milik Agent Team Leader Yang Lain", vbCritical + vbOKOnly, "Aplikasi"
+            Set M_OBJRS = Nothing
+            Exit Sub
+        End If
+        Set M_OBJRS = Nothing
+    End If
+    Me.MousePointer = vbHourglass
+    Flag_mgm = False
+    FrmCC_Colection.Show
+    Me.MousePointer = vbNormal
+    'frmCC_Colection.Show
+End If
+End Sub
+
+'Private Sub MDIForm_QueryUnload(Cancel As Integer, UnloadMode As Integer)
+'Dim M_DATA As New CLS_LOGIN
+'On Error GoTo DELETEDERR
+'    Winsock1.Close
+'   ' Call LoOut_Ext("*1")
+''    m_data.UPDATE_CLIENT M_OBJCONN, " ", MDIForm1.Text1.Text, " "
+''    m_data.INSERT_LOGIN M_OBJCONN, MDIForm1.TDBDate1.Text & " " & CStr(Time), Winsock1.LocalHostName, "LOGOUT", MDIForm1.Text1.Text
+'    Set M_DATA = Nothing
+'    Set M_OBJCONN = Nothing
+'    Set M_RPTCONN = Nothing
+'    End
+'Exit Sub
+'DELETEDERR:
+'    Set M_DATA = Nothing
+'    Exit Sub
+'End Sub
+
+Public Sub LoOut_Ext(Number$)
+Dim cancelflag As Boolean
+Dim DialString$, FromModem$, dummy
+    DialString$ = "ATDT" + Number$ + ";" + vbCr
+    On Error Resume Next
+    If MSComm1.PortOpen Then
+    Else
+        If MDIForm1.TxtCommPort.Text = Empty Then
+            MsgBox "Tidak Ada Variable buat Comport", vbInformation + vbOKOnly
+            Exit Sub
+        End If
+        MSComm1.CommPort = MDIForm1.TxtCommPort.Text
+        MSComm1.Settings = "9600,N,8,1"
+        MSComm1.PortOpen = True
+    End If
+Me.MousePointer = 11
+    If Err Then
+        MsgBox Err.Description, vbCritical + vbOKOnly, "Aplikasi"
+        MSComm1.PortOpen = False
+        cancelflag = True
+        Me.MousePointer = 0
+        Exit Sub
+    End If
+    MSComm1.InBufferCount = 0
+    MSComm1.Output = DialString$
+    Me.MousePointer = 0
+    Do
+        dummy = DoEvents()
+        If MSComm1.InBufferCount Then
+            FromModem$ = FromModem$ + MSComm1.Input
+            If InStr(FromModem$, "OK") Then
+          '      Beep
+                WaitSecs (0.1)
+                cancelflag = True
+                Exit Do
+            End If
+            If InStr(FromModem$, "NO DIALTONE") Then
+          '      Beep
+          '      Beep
+                MsgBox Err.Description, vbInformation + vbOKOnly, "Aplikasi"
+                cancelflag = True
+                Exit Do
+            End If
+        End If
+        If cancelflag Then
+            cancelflag = False
+            Me.MousePointer = 0
+            Exit Do
+        End If
+    Loop
+    If MSComm1.PortOpen = True And cancelflag = True Then
+        MSComm1.Output = "ATH" + vbCr
+        MSComm1.PortOpen = False
+    End If
+    Me.MousePointer = 0
+End Sub
+
+
+
+Private Sub MDIForm_QueryUnload(Cancel As Integer, UnloadMode As Integer)
+Dim StrSql As String
+    StrSql = "update usertbl set stsaplikasi=0  where userid ='" + MDIForm1.Text1.Text + "'"
+    M_OBJCONN.Execute (StrSql)
+    
+    Winsock2.Close
+End Sub
+Private Sub MnBb_Click()
+'    FRM_Bulletin_LIST.Show vbModal
+End Sub
+
+Private Sub mnblack_Click()
+    If UCase(Trim(MDIForm1.Text2.Text)) = "TEAMLEADER" Then
+        MsgBox "Anda tidak memiliki akses!", vbOKOnly + vbCritical, "Peringatan"
+        Exit Sub
+    End If
+    frm_BlackListNo_List.Show 1
+End Sub
+
+Private Sub mnblokspv_Click()
+'frmlockaccountfromspv.Show 1
+    frm_map_lock_acc.Show 1
+
+End Sub
+
+Private Sub MnCCode_Click()
+    FRM_Complaint_LIST.Show vbModal
+End Sub
+
+Private Sub mncontacted_Click()
+    FRM_ContactedDesc_LIST.Show vbModal
+End Sub
+
+Private Sub mndata_Click()
+  '  FRM_DataQuality_LIST.Show vbModal
+End Sub
+
+
+Private Sub MnDuplikasi_Click()
+   ' FrmDuplikasi.Show
+End Sub
+
+Private Sub MNDUPLIKASICH_Click()
+   ' FrmDuplikasiCh.Show
+End Sub
+
+Private Sub mnkrmaplikasi_Click()
+   ' FrmKurirSpvApp.Show vbModal
+End Sub
+
+Private Sub mnNact_Click()
+    FRM_NextAct_LIST.Show vbModal
+End Sub
+
+Private Sub MnReportTracking_Click()
+ FrmMgmReport.Show
+End Sub
+
+Private Sub mnrptsms_Click()
+    If UCase(Trim(MDIForm1.Text2.Text)) = "TEAMLEADER" Then
+        MsgBox "Anda tidak memiliki akses!", vbOKOnly + vbCritical, "Peringatan"
+        Exit Sub
+    End If
+    frm_report_sms1.Show 1
+End Sub
+
+Private Sub mnsubahstsacc_Click()
+    If UCase(Trim(MDIForm1.Text2.Text)) = "TEAMLEADER" Then
+        MsgBox "Anda tidak memiliki akses!", vbOKOnly + vbCritical, "Peringatan"
+        Exit Sub
+    End If
+    frnubahstsaccount.Show 1
+End Sub
+
+Private Sub mnsubmarkup_Click()
+    'If UCase(Trim(MDIForm1.Text2.Text)) = "TEAMLEADER" Then
+     '   MsgBox "Anda tidak memiliki akses!", vbOKOnly + vbCritical, "Peringatan"
+      '  Exit Sub
+    'End If
+    FRMMARKUP.Show 1
+End Sub
+
+Private Sub MNUOFFER_Click()
+    If UCase(Trim(MDIForm1.Text2.Text)) = "TEAMLEADER" Then
+        MsgBox "Anda tidak memiliki akses!", vbOKOnly + vbCritical, "Peringatan"
+        Exit Sub
+    End If
+    frmheaderoffeer.Show 1
+End Sub
+
+Private Sub mnuploadskip_Click()
+    If UCase(Trim(MDIForm1.Text2.Text)) = "TEAMLEADER" Then
+        MsgBox "Anda tidak memiliki akses!", vbOKOnly + vbCritical, "Peringatan"
+        Exit Sub
+    End If
+    frmuploadskiptarcer.Show 1
+End Sub
+Private Sub mnuProdInfo_Click()
+    FrmProductList.Show
+End Sub
+Private Sub MnVisit_Click()
+    FrmVisit.Show
+End Sub
+Private Sub nmapprovreject_Click()
+    If UCase(Trim(MDIForm1.Text2.Text)) = "TEAMLEADER" Then
+        MsgBox "Anda tidak memiliki akses!", vbOKOnly + vbCritical, "Peringatan"
+        Exit Sub
+    End If
+    frm_approved_rejected.Show vbModal
+End Sub
+
+Private Sub nmblastsmsexcel_Click()
+    If UCase(Trim(MDIForm1.Text2.Text)) = "TEAMLEADER" Then
+        MsgBox "Anda tidak memiliki akses!", vbOKOnly + vbCritical, "Peringatan"
+        Exit Sub
+    End If
+    FrmSmsBlastExcel.Show
+End Sub
+
+Private Sub nmformceksts_Click()
+    Frm_Cek_status_acc.Show 1
+End Sub
+
+Private Sub nmlistsmsscript_Click()
+    If UCase(Trim(MDIForm1.Text2.Text)) = "TEAMLEADER" Then
+        MsgBox "Anda tidak memiliki akses!", vbOKOnly + vbCritical, "Peringatan"
+        Exit Sub
+    End If
+    Frm_List_SMS_Script.Show vbModal
+End Sub
+
+Private Sub nmReportSms_Click()
+    frm_report_sms.Show vbModal
+End Sub
+
+Private Sub nmSchLocktl_Click()
+    frm_list_schedule_tl.Show 1
+End Sub
+
+Private Sub setspv_Click()
+    If UCase(Trim(MDIForm1.Text2.Text)) = "TEAMLEADER" Then
+        MsgBox "Anda tidak memiliki akses!", vbOKOnly + vbCritical, "Peringatan"
+        Exit Sub
+    End If
+    frmsettarget.Show 1
+End Sub
+
+Private Sub smsblast_Click()
+    If UCase(Trim(MDIForm1.Text2.Text)) = "TEAMLEADER" Then
+        MsgBox "Anda tidak memiliki akses!", vbOKOnly + vbCritical, "Peringatan"
+        Exit Sub
+    End If
+    Me.MousePointer = vbHourglass
+    Load frm_sms_blast
+    DoEvents
+    frm_sms_blast.Show vbModal
+    DoEvents
+End Sub
+
+Private Sub SSCommand1_Click(Index As Integer)
+Select Case Index
+    Case 0
+        m_targetview = True
+        If MDIForm1.Text2.Text = "Agent" Then
+            VIEW_MGMDATA.LblTarget(0).Caption = LblTarget.Caption
+            VIEW_MGMDATA.LblTarget(1).Caption = LblTarget.Caption
+            VIEW_MGMDATA.LstVwSearchMgm.Checkboxes = False
+        End If
+        
+        Dim ds As New ADODB.Recordset
+        ds.CursorLocation = adUseClient
+        ds.Open "select F_LOCK FrOM usertbl WHERE USERID='" & MDIForm1.Text1.Text & "'", M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+        
+        If ds.BOF And ds.EOF Then
+        Else
+            If ds!F_LOCK = "Y" Then
+                F_LOCK = True
+            Else
+                F_LOCK = False
+            End If
+        End If
+        VIEW_MGMDATA.Show
+        'FRM_SEARCH.Show
+    Case 1
+        'FrmmgmReportKeDua.Show
+   ' Case 2
+    '    FrmPreembosReport.Show
+    Case 10
+        FRMSENDMSG.Show vbModal
+    Case 4
+        
+    Case 5
+        FrmVisit.Show
+    Case 6
+'        FrmSearching.Show
+        FrmCari.Show
+    Case 7
+        fMUNLOCK.Show
+    Case 8
+        FrmAccessData.Show
+    Case 9
+       ' FrmmgmReport.Show
+    Case 11
+    FrmMgmReport.Show ' UTK RITCARD
+    'FrmMgmReport_AWARNESS.Show ' utk RITPIL dan AwarNESS
+End Select
+End Sub
+
+Private Sub MDIForm_Load()
+COUNTER = 0
+
+Dim M_DATA As New CLS_LOGIN
+Dim M_LOGINRS As ADODB.Recordset
+Dim m_port As String
+'On Error GoTo MDIForm_LoadErr
+            'Winsock2.Listen
+            On Error GoTo HELL
+            Winsock2.Listen
+            
+Call PromiseToPay
+Call HeaderInformation
+bRenderrecord = False
+Call LstDataInformation
+
+
+
+SSTab1.TabVisible(1) = False
+'Call tglhost
+Set M_LOGINRS = New ADODB.Recordset
+M_LOGINRS.CursorLocation = adUseClient
+M_LOGINRS.Open "SELECT * FROM vwcallcfg1", M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+If M_LOGINRS.RecordCount <> 0 Then
+    Text6.Text = IIf(IsNull(M_LOGINRS("DELAY_TONE")), "0", M_LOGINRS("DELAY_TONE"))
+    TxtAuthPrefix.Text = IIf(IsNull(M_LOGINRS("AUTHPREFIX")), "", M_LOGINRS("AUTHPREFIX"))
+    TxtModemAcod.Text = IIf(IsNull(M_LOGINRS("MODEMACOD")), "", M_LOGINRS("MODEMACOD"))
+    TxtCommPort.Text = IIf(IsNull(M_LOGINRS("COMMPORT")), "", M_LOGINRS("COMMPORT"))
+    TDBDate1.Value = IIf(IsNull(M_LOGINRS("TglSystem")), "", M_LOGINRS("TglSystem"))
+    TxtJamMulaiTelp.Text = IIf(IsNull(M_LOGINRS("JAMMULAITELP")), "", M_LOGINRS("JAMMULAITELP"))
+    TxtJamSelesaiTelp.Text = IIf(IsNull(M_LOGINRS("JAMSELESAITELP")), "", M_LOGINRS("JAMSELESAITELP"))
+    TxtLamaFollowup.Text = IIf(IsNull(M_LOGINRS("LAMAFOLLOWUP")), "99", M_LOGINRS("LAMAFOLLOWUP"))
+Else
+    TDBDate1.Value = Now
+    TxtLamaFollowup.Text = "99"
+End If
+m_port = BUKA_FILE_KONEKSI("comport.txt")
+If m_port <> "" Then
+    TxtCommPort.Text = m_port
+End If
+M_LOGINRS.Close
+Set M_LOGINRS = Nothing
+
+'----------------------------------------------------------------------------------------
+'M_DATA.UPDATE_CLIENT M_OBJCONN, Winsock1.LocalIP, MDIForm1.Text1.Text, Winsock1.LocalHostName
+'M_DATA.INSERT_LOGIN M_OBJCONN, TDBDate1.Text & "-" & CStr(Time), Winsock1.LocalHostName, "LOGIN", MDIForm1.Text1.Text
+'Exit Sub
+'MDIForm_LoadErr:
+'    MsgBox Err.Description
+'    Set M_LOGINRS = Nothing
+Exit Sub
+HELL:
+    MsgBox Err.Description + "only one aplication is open", vbCritical + vbOKOnly, "Warning"
+    End
+End Sub
+
+Private Sub mnabout_Click()
+    frmAbout.Show vbModal
+End Sub
+
+Private Sub mnagent_Click()
+    FRM_AGENT_LIST.Show vbModal
+End Sub
+
+Private Sub mnbaca_Click()
+    FRMBACAMSG.Show vbModal
+End Sub
+
+Private Sub mndata2_Click()
+    FRM_DATASOURCE_LIST.Show vbModal
+End Sub
+
+Private Sub MnFile_Click(Index As Integer)
+Dim StrSql As String
+Select Case Index
+    Case 0
+        Unload MDIForm1
+        frmLogin.Show vbModal
+    Case 1
+        FRM_SET_PWD.Show
+    Case 3
+    Case 5
+        frm_gantipas.Text1(2).Text = UCase(MDIForm1.Text1.Text)
+        frm_gantipas.Show vbModal
+    Case 6
+    Case 7
+    StrSql = "update usertbl set stsaplikasi=0  where userid ='" + MDIForm1.Text1.Text + "'"
+    M_OBJCONN.Execute (StrSql)
+        Unload Me
+        End
+End Select
+End Sub
+
+Private Sub mnhslupload_Click()
+    FRM_HASILUPLOAD.Show vbModal
+End Sub
+
+Private Sub mnproduct_Click()
+    FRM_PRODUCT_LIST.Show vbModal
+End Sub
+
+Private Sub mnreason_Click()
+    FRM_CLOSSING_LIST.Show vbModal
+End Sub
+Private Sub mnsend_Click()
+    FRMSENDMSG.Show vbModal
+End Sub
+
+Private Sub mnspv_Click()
+    FRM_SPV_LIST.Show vbModal
+End Sub
+
+Private Sub mnup_Click()
+    FRM_SETUSER.Show vbModal
+End Sub
+
+Private Sub SSCommand1_MouseEnter(Index As Integer, ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+'Select Case Index
+'Case 0, 1, 2, 3, 4, 5, 6, 7
+'    SSCommand1(Index).ForeColor = &HFFFFFF
+'End Select
+End Sub
+
+Private Sub SSCommand1_MouseExit(Index As Integer, ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+'Select Case Index
+'Case 0, 1, 2, 3, 4, 5, 6, 7
+'    SSCommand1(Index).ForeColor = &HC00000
+'End Select
+End Sub
+
+Private Sub SSCommand2_Click()
+Dim M_OBJRS As New ADODB.Recordset
+Dim CMDSQL As String
+Dim listitem As listitem
+
+Set M_OBJRS = New ADODB.Recordset
+M_OBJRS.CursorLocation = adUseClient
+CMDSQL = "SELECT custid,f_cek,agent FROM mgm where f_pending='pending' "
+M_OBJRS.Open CMDSQL, M_OBJCONN, adOpenDynamic, adLockOptimistic
+If M_OBJRS.RecordCount <> 0 Then
+        LstGrade.ListItems.CLEAR
+    End If
+    While Not M_OBJRS.EOF
+        Set listitem = LstGrade.ListItems.ADD(, , M_OBJRS.Bookmark)
+        listitem.SubItems(1) = IIf(IsNull(M_OBJRS("CUSTID")), "", M_OBJRS("CUSTID"))
+        listitem.SubItems(2) = IIf(IsNull(M_OBJRS("F_CEK")), "", M_OBJRS("F_CEK"))
+        listitem.SubItems(3) = IIf(IsNull(M_OBJRS!agent), "", M_OBJRS!agent)
+        M_OBJRS.MoveNext
+    Wend
+    If M_OBJRS.RecordCount = 0 Then
+    LstGrade.ListItems.CLEAR
+    End If
+    Set M_OBJRS = Nothing
+    
+End Sub
+
+
+
+
+Private Sub subupdate_Click()
+    If UCase(Trim(MDIForm1.Text2.Text)) = "TEAMLEADER" Then
+        MsgBox "Anda tidak memiliki akses!", vbOKOnly + vbCritical, "Peringatan"
+        Exit Sub
+    End If
+    frmupdate.Show 1
+End Sub
+Private Sub Timer6_Timer()
+On Error Resume Next
+'Dim ConnPTP As New ADODB.Connection
+Dim M_OBJRS As New ADODB.Recordset
+Dim cmdsql34 As String
+Dim TELPo As String
+Dim codea As String
+
+If Left(Text1, 1) = "D" Or Text1 = "JOKO" Or Text1 = "SPV1" Or Left(Text1, 1) = "T" Then
+Select Case Text1.Text
+
+Case "TL1"
+codea = "ACC1"
+Case "TL2"
+codea = "ACC2"
+Case "TL3"
+codea = "ACC3"
+Case "TL4"
+codea = "ACC4"
+Case "TL5"
+codea = "ACC5"
+Case "TL6"
+codea = "ACC6"
+Case "TL7"
+codea = "ACC7"
+Case "TL8"
+codea = "ACC8"
+Case "TL9"
+codea = "ACC9"
+Case "TL10"
+codea = "ACC10"
+Case Else
+codea = Text1.Text
+End Select
+
+TELPo = "Select count(*) as banyak from inbox where sendernumber in ("
+
+Set M_OBJRS = New ADODB.Recordset
+M_OBJRS.CursorLocation = adUseClient
+cmdsql34 = "select mobileno,mobileno2,mobilenoadd1,mobilenoadd2 from mgm where agent = '" + codea + "'"
+M_OBJRS.Open cmdsql34, M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+
+If M_OBJRS.RecordCount = 0 Then
+    Timer6.Interval = 60000
+    Exit Sub
+End If
+
+While Not M_OBJRS.EOF
+
+
+
+If Len(M_OBJRS("mobileno")) <> 0 Then
+satu = FindReplace(M_OBJRS("mobileno"), "0", "+62")
+TELPo = TELPo + "'" + satu + "',"
+Else
+TELPo = TELPo
+End If
+
+If Len(M_OBJRS("mobileno2")) <> 0 Then
+dua = FindReplace(M_OBJRS("mobileno2"), "0", "+62")
+TELPo = TELPo + "'" + dua + "',"
+Else
+TELPo = TELPo
+End If
+
+If Len(M_OBJRS("mobilenoadd1")) <> 0 Then
+tiga = FindReplace(M_OBJRS("mobilenoadd1"), "0", "+62")
+TELPo = TELPo + "'" + tiga + "',"
+Else
+TELPo = TELPo
+End If
+
+If Len(M_OBJRS("mobilenoadd2")) <> 0 Then
+empat = FindReplace(M_OBJRS("mobilenoadd2"), "0", "+62")
+TELPo = TELPo + "'" + empat + "',"
+Else
+TELPo = TELPo
+End If
+
+
+
+M_OBJRS.MoveNext
+Wend
+Set M_OBJRS = Nothing
+
+
+TELPo = Left(TELPo, Len(TELPo) - 1)
+Dim TELPo1
+Dim TELPo2
+
+TELPo1 = TELPo + ") and processed='f'"
+TELPo2 = TELPo + ") and processed='t'"
+
+
+
+
+
+M_OBJRS.Open TELPo1, M_OBJCONN1, adOpenDynamic, adLockOptimistic, adCmdText
+While Not M_OBJRS.EOF
+Label9 = "SMS BARU " & M_OBJRS("banyak") & " SMS"
+        M_OBJRS.MoveNext
+Wend
+
+'JIKA ADA SMS BARU MASUK
+If Trim(Label9.Caption) = "SMS BARU 0 SMS" Then
+    'MsgBox "Tidak ada sms baru!"
+    Timer1.Enabled = False
+Else
+    If Trim(Label9.Caption) <> "" Then
+        Timer1.Enabled = True
+        MsgBox "Ada SMS BARU MASUK! Silahkan cek!", vbOKOnly + vbInformation, "Informasi"
+    End If
+End If
+
+Set M_OBJRS = Nothing
+
+'-----------------------------
+M_OBJRS.Open TELPo2, M_OBJCONN1, adOpenDynamic, adLockOptimistic, adCmdText
+While Not M_OBJRS.EOF
+Label10 = "SMS LAMA " & M_OBJRS("banyak") & " SMS"
+        M_OBJRS.MoveNext
+Wend
+Set M_OBJRS = Nothing
+End If
+
+'MsgBox TELPo
+ ' M_OBJCONN.Close
+  'Set M_OBJCONN = Nothing
+Timer6.Interval = 60000
+End Sub
+Private Sub Timer1_Timer()
+Dim ConMSG As New ADODB.Connection
+Dim cmdsqlnew As String
+Dim cmdsql3 As String
+Dim M_OBJRS As New ADODB.Recordset
+Dim CMDSQL As String
+On Error Resume Next
+'M_OBJCONN.ConnectionTimeout = 10000
+ConMSG.Open CMDSQLOPEN
+M_OBJRS.CursorLocation = adUseClient
+cmdsql3 = "select sender, recipient, datetime, msg, t from msgtbl where recipient ='" + Trim(MDIForm1.Text1.Text) + "' and sts ='0'"
+
+M_OBJRS.Open cmdsql3, ConMSG, adOpenDynamic, adLockOptimistic, adCmdText
+While Not M_OBJRS.EOF
+    FRMTERIMAMSG.RichTextBox1.SelColor = &HC00000
+    FRMTERIMAMSG.Text1.Text = IIf(IsNull(M_OBJRS!SENDER), "", M_OBJRS!SENDER)
+    FRMTERIMAMSG.RichTextBox1.Text = FRMTERIMAMSG.RichTextBox1.Text + "Dari :" + IIf(IsNull(M_OBJRS!SENDER), "", M_OBJRS!SENDER) + vbCrLf
+    FRMTERIMAMSG.RichTextBox1.Text = FRMTERIMAMSG.RichTextBox1.Text + "Kepada :" + IIf(IsNull(M_OBJRS!RECIPIENT), "", M_OBJRS!RECIPIENT) + vbCrLf
+    FRMTERIMAMSG.RichTextBox1.Text = FRMTERIMAMSG.RichTextBox1.Text + "Tanggal :" + IIf(IsNull(M_OBJRS!DateTime), "", M_OBJRS!DateTime) + vbCrLf
+    FRMTERIMAMSG.RichTextBox1.Text = FRMTERIMAMSG.RichTextBox1.Text + "Isi Pesan :" + vbCrLf
+    FRMTERIMAMSG.RichTextBox1.Text = FRMTERIMAMSG.RichTextBox1.Text + IIf(IsNull(M_OBJRS!MSG), "", M_OBJRS!MSG)
+    FRMTERIMAMSG.RichTextBox1.Text = FRMTERIMAMSG.RichTextBox1.Text + " " + vbCrLf
+    FRMTERIMAMSG.RichTextBox1.Text = FRMTERIMAMSG.RichTextBox1.Text & vbCrLf
+     'AND T= " + CStr(IIf(IsNull(m_objrs!t), 0, m_objrs!t)) + ""
+    'ConMSG.Execute cmdsql3
+    'm_objrs.Requery
+    M_OBJRS.MoveNext
+Wend
+If M_OBJRS.RecordCount <> 0 Then
+    FRMTERIMAMSG.Show vbModal
+    cmdsql3 = "UPDATE msgtbl SET STS ='1' WHERE RECIPIENT ='" + MDIForm1.Text1.Text + "'"
+    ConMSG.Execute cmdsql3
+End If
+Set M_OBJRS = Nothing
+Set M_OBJRS = New ADODB.Recordset
+M_OBJRS.CursorLocation = adUseClient
+cmdsqlnew = "select * from usertbl where userid='" + MDIForm1.Text1.Text + "' and f_flagrender=1"
+M_OBJRS.Open cmdsqlnew, ConMSG, adOpenDynamic, adLockOptimistic
+
+If M_OBJRS.RecordCount <> 0 Then
+    bRenderrecord = True
+    cmdsql3 = "UPDATE usertbl SET f_flagrender =0 where userid='" + MDIForm1.Text1.Text + "'"
+    ConMSG.Execute cmdsql3
+End If
+ 
+ ConMSG.Close
+Set ConMSG = Nothing
+'On Error Resume Next
+''M_OBJCONN.ConnectionTimeout = 10000
+'m_objrs.CursorLocation = adUseClient
+'cmdsql3 = "select SENDER, RECIPIENT, DATETIME, MSG , T from MSGTBL where RECIPIENT ='" + MDIForm1.Text1.Text + "' AND STS =0"
+''m_objrs.Open "select MSGTBL.T, MSGTBL.RECIPIENT,MSGTBL.DATETIME,MSGTBL.SENDER,MSGTBL.SENTFROM,MSGTBL.MSG,usertbl.AGENT from MSGTBL, usertbl  where MSGTBL.SENDER = usertbl.USERID AND RECIPIENT ='" + MDIForm1.Text1.Text + "' AND STS =0", M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+'m_objrs.Open cmdsql3, M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+'While Not m_objrs.EOF
+'    FRMTERIMAPOPUP.RichTextBox1.SelColor = &HC00000
+'    FRMTERIMAPOPUP.Text1.Text = IIf(IsNull(m_objrs!SENDER), "", m_objrs!SENDER)
+'    FRMTERIMAPOPUP.RichTextBox1.Text = FRMTERIMAPOPUP.RichTextBox1.Text + "Dari :" + IIf(IsNull(m_objrs!SENDER), "", m_objrs!SENDER) + vbCrLf
+'    FRMTERIMAPOPUP.RichTextBox1.Text = FRMTERIMAPOPUP.RichTextBox1.Text + "Kepada :" + IIf(IsNull(m_objrs!RECIPIENT), "", m_objrs!RECIPIENT) + vbCrLf
+'    FRMTERIMAPOPUP.RichTextBox1.Text = FRMTERIMAPOPUP.RichTextBox1.Text + "Tanggal :" + IIf(IsNull(m_objrs!DateTime), "", m_objrs!DateTime) + vbCrLf
+'    FRMTERIMAPOPUP.RichTextBox1.Text = FRMTERIMAPOPUP.RichTextBox1.Text + "Isi Pesan :" + vbCrLf
+'    FRMTERIMAPOPUP.RichTextBox1.Text = FRMTERIMAPOPUP.RichTextBox1.Text + IIf(IsNull(m_objrs!MSG), "", m_objrs!MSG)
+'    FRMTERIMAPOPUP.RichTextBox1.Text = FRMTERIMAPOPUP.RichTextBox1.Text + " " + vbCrLf
+'    FRMTERIMAPOPUP.RichTextBox1.Text = FRMTERIMAPOPUP.RichTextBox1.Text & vbCrLf
+'
+'    M_OBJCONN.Execute cmdsql3
+'    m_objrs.MoveNext
+'Wend
+'If m_objrs.RecordCount <> 0 Then
+'    'WriteINI "LOGIN", "USER NAME", IIf(IsNull(m_objrs!SENDER), "", m_objrs!SENDER)
+'    FRMTERIMAPOPUP.Show vbModal
+'    'cmdsql3 = "UPDATE MSGTBL SET STS =1 WHERE RECIPIENT ='" + MDIForm1.Text1.Text + "'"
+'    cmdsql3 = "UPDATE MSGTBL SET STS =1 WHERE RECIPIENT ='" + MDIForm1.Text1.Text + "' "
+'    M_OBJCONN.Execute cmdsql3
+'End If
+'Set m_objrs = Nothing
+'
+End Sub
+
+
+
+Private Sub Timer2_Timer()
+If UCase(Text1.Text) = "RICKY" Or UCase(Text1.Text) = "FIFI" Or UCase(Text1.Text) = "LILIS" Then
+    SSCommand1(4).Visible = False
+    SSCommand1(7).Visible = False
+    MDIForm1.mnagent.Enabled = False
+    MDIForm1.mnspv.Enabled = False
+    'MDIForm1.MnFile(1).Enabled = False
+End If
+Timer2.Enabled = False
+End Sub
+
+Sub KEDAPKEDIP()
+If Label4.Visible = True Then
+    Label4.Visible = False
+ElseIf Label4.Visible = False Then
+    Label4.Visible = True
+End If
+End Sub
+Private Sub Timer3_Timer()
+Call KEDAPKEDIP
+'Label3.Caption = Now()
+Dim M_DATA As New CLS_FRMCUST_CC_MGM
+Dim CMDSQL As String
+Dim n As String
+Dim tglnow As Date
+'tglnow=format(
+'Label4.Caption = Now()
+n = Format(Now(), "hh:mm:ss")
+
+If n = "22:00:00" Then
+    Label3.Caption = "haiii"
+
+    'Otomatis BP
+    CMDSQL = "update mgm SET LASTSTATUS=KETHSLKERJA,KETHSLKERJA='BP-BROKEN PROMISE',F_CEK='BP-',REMARKS = 'BP-BROKEN PROMISE-Auto',RECSTATUS='C',OTO='Y',TGLSTATUS='" & Format(Now, "yyyy/mm/dd") & "'"
+    CMDSQL = CMDSQL + "where custid in (select custid from vwptp1 "
+    CMDSQL = CMDSQL + "where datediff(day,promisedate,getdate())>7 and custid not in ( "
+    CMDSQL = CMDSQL + "select distinct custid from tbllunas)) And F_CEK like '%PTP%'"
+    M_OBJCONN.Execute CMDSQL
+
+    'Otomatis POP
+    CMDSQL = "update mgm SET"
+    CMDSQL = CMDSQL + " LASTSTATUS=KETHSLKErJA,KETHSLKErJA='POP-PROGRESS OF PAYMENT',F_CEK='POP',rEMArKS = 'POP-PROGRESS OF PAYMENT-Auto',RECSTATUS='C',OTO='Y',TGLSTATUS='" & Format(Now, "yyyy/mm/dd") & "'"
+    CMDSQL = CMDSQL + " where custid in ("
+    CMDSQL = CMDSQL + " select distinct custid from tbllunas)"
+    CMDSQL = CMDSQL + " And F_CEK<>'POP' AND F_CEK='PTP'"
+    M_OBJCONN.Execute CMDSQL
+
+    '
+    CMDSQL = "SELECT CUSTID,AGENT,REMARKS,NEXTACT,F_CEK,Statuscall,MOBILENO from mgm where OTO='Y'"
+    Dim ds As ADODB.Recordset
+    Set ds = New ADODB.Recordset
+    ds.CursorLocation = adUseClient
+    ds.Open CMDSQL, M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+    If ds.EOF And ds.BOF Then
+    Else
+        Do While Not ds.EOF
+            M_DATA.ADD_HISTORY_OTO M_OBJCONN, ds!CustId, Format(Now, "yyyy/mm/dd hh:mm:dd"), Time, ds!agent, "COLLECTION", IIf(IsNull(ds!REMARKS), "", ds!REMARKS), "", IIf(IsNull(ds!NEXTACT), "", ds!NEXTACT), "", IIf(IsNull(ds!F_CEK), "", ds!F_CEK), IIf(IsNull(ds!statuscall), "", ds!statuscall), IIf(IsNull(ds!MOBILENO), "", ds!MOBILENO)
+            ds.MoveNext
+        Loop
+    End If
+
+    CMDSQL = "update mgm SET OTO=''"
+    M_OBJCONN.Execute CMDSQL
+End If
+End Sub
+Private Sub Timer4_Timer()
+Dim TGLSERVER As String
+Dim TGLCLICK As String
+Dim listitem As listitem
+Dim ConnPTP As New ADODB.Connection
+Dim M_OBJRS As New ADODB.Recordset
+Dim cmdsql3 As String
+
+If shedulePTP = True Then
+    'ngak ada kegiatan
+Else
+    ConnPTP.Open CMDSQLOPEN
+    Set M_OBJRS = New ADODB.Recordset
+    M_OBJRS.CursorLocation = adUseClient
+    cmdsql3 = "select custid,name,tdbDatePTP from mgm where TdbDatePTP = '" + Format((Now + 7), "yyyy/mm/dd") + "' and agent ='" + MDIForm1.Text1.Text + "'"
+    'cmdsql3 = "select * from mgm where TGLINCOMING = '" + Format((MDIForm1.TDBDate1.Value + 7), "yyyy/mm/dd") + "'"
+    M_OBJRS.Open cmdsql3, ConnPTP, adOpenDynamic, adLockOptimistic, adCmdText
+    If M_OBJRS.RecordCount <> 0 Then
+        LstGrade.ListItems.CLEAR
+    End If
+    While Not M_OBJRS.EOF
+        Set listitem = LstGrade.ListItems.ADD(, , M_OBJRS.Bookmark)
+        listitem.SubItems(1) = IIf(IsNull(M_OBJRS("CUSTID")), "", M_OBJRS("CUSTID"))
+        listitem.SubItems(2) = IIf(IsNull(M_OBJRS("NAME")), "", M_OBJRS("NAME"))
+        listitem.SubItems(3) = Format(IIf(IsNull(M_OBJRS("TdbDatePTP")), "", M_OBJRS("TdbDatePTP")), "yyyy/mm/dd hh:nn")
+        M_OBJRS.MoveNext
+    Wend
+    Set M_OBJRS = Nothing
+    If M_OBJRS.RecordCount <> 0 Then
+        MsgBox "You Got Schedule PTP to Follow Up", vbInformation + vbOKOnly, "Aplikasi"
+        shedulePTP = True
+    End If
+
+'    Set m_objrs = New ADODB.Recordset
+'    m_objrs.CursorLocation = adUseClient
+'    cmdsql3 = "select custid, name, TdbDatePTP from mgm where TdbDatePTP = '" + Format((MDIForm1.TDBDate1.Value + 1), "yyyy/mm/dd") + "' and agent ='" + MDIForm1.Text1.Text + "'"
+'    'cmdsql3 = "select * from mgm where TGLINCOMING = '" + Format((MDIForm1.TDBDate1.Value + 1), "yyyy/mm/dd") + "'"
+'    m_objrs.Open cmdsql3, M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+'    If m_objrs.RecordCount <> 0 Then
+'    '    LstGrade.ListItems.Clear
+'    End If
+'    While Not m_objrs.EOF
+'        Set listitem = LstGrade.ListItems.ADD(, , m_objrs.Bookmark)
+'        listitem.SubItems(1) = IIf(IsNull(m_objrs("CUSTID")), "", m_objrs("CUSTID"))
+'        listitem.SubItems(2) = IIf(IsNull(m_objrs("NAME")), "", m_objrs("NAME"))
+'        listitem.SubItems(3) = Format(IIf(IsNull(m_objrs("TdbDatePTP")), "", m_objrs("TdbDatePTP")), "yyyy/mm/dd hh:nn")
+'        m_objrs.MoveNext
+'    Wend
+'    If m_objrs.RecordCount <> 0 Then
+'        MsgBox "You Got Schedule PTP to Follow Up", vbInformation + vbOKOnly, "Aplikasi"
+'        shedulePTP = True
+'    End If
+'End If
+'Set m_objrs = Nothing
+
+    Set M_OBJRS = New ADODB.Recordset
+    M_OBJRS.CursorLocation = adUseClient
+    cmdsql3 = "select CUSTID, NAME, NEXTACTDATE from mgm where NEXTACTDATE BETWEEN '" + Format((Now), "yyyy/mm/dd") & " 00:00" + "' and '" + Format((Now), "yyyy/mm/dd") & " 23:59" + "' and agent ='" + MDIForm1.Text1.Text + "'"
+    'cmdsql3 = "select * from mgm where NEXTACTDATE BETWEEN '" + Format((MDIForm1.TDBDate1.Value), "yyyy/mm/dd") & " 00:00" + "' and '" + Format((MDIForm1.TDBDate1.Value), "yyyy/mm/dd") & " 23:59" + "'"
+    M_OBJRS.Open cmdsql3, ConnPTP, adOpenDynamic, adLockOptimistic, adCmdText
+    If M_OBJRS.RecordCount <> 0 Then
+        LstGrade.ListItems.CLEAR
+    End If
+    While Not M_OBJRS.EOF
+        Set listitem = LstGrade.ListItems.ADD(, , M_OBJRS.Bookmark)
+        listitem.SubItems(1) = IIf(IsNull(M_OBJRS("CUSTID")), "", M_OBJRS("CUSTID"))
+        listitem.SubItems(2) = IIf(IsNull(M_OBJRS("NAME")), "", M_OBJRS("NAME"))
+        listitem.SubItems(3) = Format(IIf(IsNull(M_OBJRS("NEXTACTDATE")), "", M_OBJRS("NEXTACTDATE")), "yyyy/mm/dd hh:nn")
+        M_OBJRS.MoveNext
+    Wend
+  Set M_OBJRS = Nothing
+  ConnPTP.Close
+  Set ConnPTP = Nothing
+ End If
+End Sub
+
+Public Sub ActionCTI(Nilai As String)
+'ParameterCTI = Nilai & " /r/n"
+ParameterCTI = Nilai
+TimerCTI.Enabled = True
+End Sub
+
+Private Sub Timer5_Timer()
+Dim kalimat2 As String
+     
+If PANJANG = COUNTER Then
+COUNTER = 0
+DoEvents
+Else
+
+'      Kalimat1 = Lbltargetspv.Caption
+      COUNTER = COUNTER + 1
+      DoEvents
+      Lbltargetspv.Caption = TulisJalan(COUNTER, Kalimat1, 200)
+End If
+
+End Sub
+
+Private Sub TimerBlink_Timer()
+    If Label9.ForeColor = vbBlack Then
+        Label9.ForeColor = vbRed
+        KelapKelip = KelapKelip + 1
+    Else
+        Label9.ForeColor = vbBlack
+        KelapKelip = KelapKelip + 1
+    End If
+           
+    If KelapKelip = 7 Then
+            KelapKelip = 0
+            WaitSecs (3)
+            'TimerBlink.Enabled = False
+    End If
+End Sub
+
+Private Sub TimerCTI_Timer()
+Select Case WskCTI.state
+        Case 9, 8, 1
+            Debug.Print WskCTI.state
+            WskCTI.Close
+            WskCTI.RemoteHost = "127.0.0.1"
+            'buat connect ke chromium
+            'WskCTI.RemotePort = 2121
+            'buat connect ke cti
+            WskCTI.RemotePort = 18000
+            WskCTI.Connect
+        Case 6
+            Debug.Print WskCTI.state
+        Case 7
+            Debug.Print WskCTI.state
+            If Len(ParameterCTI) > 2 Then
+                WskCTI.SendData ParameterCTI + vbCrLf
+                'MsgBox ParameterCTI
+            End If
+            Debug.Print ParameterCTI
+            TimerCTI.Enabled = False
+        Case 0
+            Debug.Print WskCTI.state
+            WskCTI.RemoteHost = "127.0.0.1"
+            'buat connect ke chromium
+            'WskCTI.RemotePort = 2121
+            'buat connect ke cti
+            WskCTI.RemotePort = 18000
+            WskCTI.Connect
+        Case Else
+End Select
+End Sub
+
+Private Sub VSMS_Click()
+    If UCase(Trim(MDIForm1.Text2.Text)) = "TEAMLEADER" Then
+        MsgBox "Anda tidak memiliki akses!", vbOKOnly + vbCritical, "Peringatan"
+        Exit Sub
+    End If
+    Load Frm_verify
+    Frm_verify.Show vbModal
+End Sub
+
+Private Sub WskCTI_DataArrival(ByVal bytesTotal As Long)
+Dim StrMsgDrCti As String
+Dim lStrMsgDrCti As String
+'get data balik dari cti
+    WskCTI.GetData StrMsgDrCti, vbString
+    Debug.Print StrMsgDrCti
+    If Len(StrMsgDrCti) > 1 Then
+        'FrmSoftPhone.Caption = StrMsgDrCti
+        lStrMsgDrCti = Left(StrMsgDrCti, Len(StrMsgDrCti) - 2)
+        TxtStatus.Text = StrMsgDrCti
+        'TxtStatus.Text = Mid(lStrMsgDrCti, InStr(1, lStrMsgDrCti, "K", vbTextCompare) + 1, Len(lStrMsgDrCti) - InStr(1, lStrMsgDrCti, "K", vbTextCompare))
+    
+        'Debug.Print Mid(lStrMsgDrCti, InStr(1, lStrMsgDrCti, "K", vbTextCompare) + 1, Len(lStrMsgDrCti) - InStr(1, lStrMsgDrCti, "K", vbTextCompare))
+        'Debug.Print Len(Mid(lStrMsgDrCti, InStr(1, lStrMsgDrCti, "K", vbTextCompare) + 1, Len(lStrMsgDrCti) - InStr(1, lStrMsgDrCti, "K", vbTextCompare)))
+      '  Debug.Print "text - " & TxtStatus.Text
+      
+'      If TxtStatus.Text = "ringing" Then
+'        FrmAnswerCall.Show vbModal
+'      Else
+'        If InStr(lStrMsgDrCti, "ringing") Then
+'          FrmAnswerCall.Show vbModal
+'        End If
+'      End If
+'
+      If InStr(lStrMsgDrCti, "free") Then
+        'hang up
+'            Call savecall
+'            FBILL.Timer6.Enabled = False
+'            Unload FBILL
+ '           Unload FrmAnswerCall
+      End If
+'      If InStr(lStrMsgDrCti, "busy") And rounding <> 0 Then
+'        If CmbNo.Text = "108" Or CmbNo.Text = "147" Or CmbNo.Text = "109" Then
+'        Else
+'            'Di angkat
+'             FBILL.Timer6.Enabled = True
+'             FBILL.Show
+'        End If
+'      End If
+      
+    End If
+End Sub
+
+Private Sub WskCTI_SendComplete()
+    Debug.Print "OK send"
+End Sub
+
+Private Sub WskCTI_SendProgress(ByVal bytesSent As Long, ByVal bytesRemaining As Long)
+    Debug.Print "Sending" & CStr(bytesSent) & "/" & CStr(bytesRemaining)
+End Sub
+
+'softphone control
+Private Sub CmdACW_Click()
+    MDIForm1.ActionCTI ("ACW")
+End Sub
+
+Private Sub CmdAUX_Click()
+    MDIForm1.ActionCTI ("AUX")
+End Sub
+
+Private Sub CmdCall_Click()
+'    If CmbNo.Text = "108" Then
+'        MDIForm1.ActionCTI ("DIAL|" & MDIForm1.TxtAuthPrefix.Text & GetNumber(108))
+'    ElseIf CmbNo.Text = "109" Then
+'        MDIForm1.ActionCTI ("DIAL|" & MDIForm1.TxtAuthPrefix.Text & GetNumber(109))
+'    ElseIf CmbNo.Text = "147" Then
+'        MDIForm1.ActionCTI ("DIAL|" & MDIForm1.TxtAuthPrefix.Text & GetNumber(147))
+'    Else
+        'MDIForm1.ActionCTI ("DIAL|" + CmbNo)
+'    End If
+
+If CmbNo.Text = "108" Then
+        MDIForm1.ActionCTI ("DIAL|268" & GetNumber(108))
+    Else
+        If Len(CmbNo.Text) >= 6 And Len(CmbNo.Text) <= 7 Then
+            If Left(CmbNo.Text, 2) <> "08" And Right(CmbNo.Text, 3) = "108" Then
+                MDIForm1.ActionCTI ("DIAL|268" & GetNumber(CmbNo.Text))
+            End If
+        End If
+    End If
+    
+    If CmbNo.Text = "109" Then
+        MDIForm1.ActionCTI ("DIAL|268" & GetNumber(109))
+    Else
+        If Len(CmbNo.Text) >= 6 And Len(CmbNo.Text) <= 7 Then
+            If Left(CmbNo.Text, 2) <> "08" And Right(CmbNo.Text, 3) = "109" Then
+                MDIForm1.ActionCTI ("DIAL|268" & GetNumber(CmbNo.Text))
+            End If
+        End If
+    End If
+    
+    If CmbNo.Text = "147" Then
+        MDIForm1.ActionCTI ("DIAL|268" & GetNumber(147))
+    Else
+        If Len(CmbNo.Text) >= 6 And Len(CmbNo.Text) <= 7 Then
+            If Left(CmbNo.Text, 2) <> "08" And Right(CmbNo.Text, 3) = "147" Then
+                MDIForm1.ActionCTI ("DIAL|268" & GetNumber(CmbNo.Text))
+            End If
+        End If
+    End If
+    
+    If CmbNo.Text = "109" Or CmbNo.Text = "108" Or CmbNo.Text = "147" Then
+    Else
+        MDIForm1.ActionCTI ("DIAL|" + CmbNo)
+    End If
+End Sub
+
+Private Sub CmdConference_Click()
+    MsgBox "Conference"
+End Sub
+
+Private Sub CmdHangUp_Click()
+    MDIForm1.ActionCTI ("HANGUP")
+End Sub
+
+Private Sub CmdLogin_Click()
+    MsgBox "Login"
+End Sub
+
+Private Sub Cmdready_Click()
+    MDIForm1.ActionCTI ("READY")
+End Sub
+
+Private Sub CmdOutbound_Click()
+    MDIForm1.ActionCTI ("NOTREADY")
+End Sub
+
+Private Sub CmdTransfer_Click()
+    If CmbNo.Text = "" Then
+    Else
+        MDIForm1.ActionCTI ("TRANSFER" + CmbNo)
+    End If
+End Sub
+
+Private Sub CmdBintang_Click()
+    CmbNo.Text = CmbNo.Text + "*"
+End Sub
+
+Private Sub CmdCancel_Click()
+    CmbNo.Text = ""
+End Sub
+
+Private Sub CmdNo_Click(Index As Integer)
+    CmbNo.Text = CmbNo.Text + CStr(Index)
+End Sub
+
+Private Sub CmdPager_Click()
+    CmbNo.Text = CmbNo.Text + "#"
+End Sub
+
+
+Private Sub Cmddtmf_Click()
+    If CmbNo.Text = "" Then
+    Else
+        MDIForm1.ActionCTI ("DTMF" + CmbNo)
+    End If
+End Sub
+
+Private Sub PromiseToPay()
+    LstGrade.ColumnHeaders.ADD 1, , "No", 3 * 120
+    LstGrade.ColumnHeaders.ADD 2, , "Cust ID", 10 * 120
+    LstGrade.ColumnHeaders.ADD 3, , "Status", 10 * 120
+    LstGrade.ColumnHeaders.ADD 4, , "Agent", 10 * 120
+End Sub
+
+Private Sub HeaderInformation()
+    LstInformation.ColumnHeaders.ADD 1, , "Description", 20 * 120
+    LstInformation.ColumnHeaders.ADD 2, , "No", 1
+    LstInformation.ColumnHeaders.ADD 3, , "Lokasi", 1
+End Sub
+
+Private Sub CmdAccept_Click()
+    MDIForm1.ActionCTI ("DTMF")
+End Sub
+
+Private Sub CmdOutgoing_Click()
+    MDIForm1.ActionCTI ("OUTGOING")
+End Sub
+
+Private Sub LstInformation_DblClick()
+If LstInformation.ListItems.Count = 0 Then
+    Exit Sub
+End If
+If StartMeUp(LstInformation.SelectedItem.SubItems(2)) <= 32 Then
+   MsgBox "File Tidak Ditemukan", vbOKOnly + vbCritical, "Pemberitahuan"
+   
+Else
+SSTab1.Tab = 0
+End If
+End Sub
+
+Private Sub LstDataInformation()
+Dim listitem As listitem
+Dim ssql As String
+    Set M_LOGINRS = New ADODB.Recordset
+    M_LOGINRS.CursorLocation = adUseClient
+
+    ssql = "SELECT ExpiryDate, Description, id, Direktori FROM tblinformationlokasi " & _
+           "ORDER BY Description"
+    M_LOGINRS.Open ssql, M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+
+    While Not M_LOGINRS.EOF
+    If Format(M_LOGINRS!ExpiryDate, "yyyy/mm/dd") > Format(MDIForm1.TDBDate1.Value, "yyyy/mm/dd") Then
+        Set listitem = MDIForm1.LstInformation.ListItems.ADD(, , IIf(IsNull(M_LOGINRS("Description")), "", M_LOGINRS("Description")))
+            listitem.SubItems(1) = IIf(IsNull(M_LOGINRS("id")), "", M_LOGINRS("id"))
+            listitem.SubItems(2) = IIf(IsNull(M_LOGINRS("Direktori")), "", M_LOGINRS("Direktori"))
+    End If
+        M_LOGINRS.MoveNext
+    Wend
+
+    Set M_LOGINRS = Nothing
+End Sub
+
+Function ReplaceFirstInstance(SourceString, _
+Searchstring, Replacestring)
+Dim StartLoc
+Dim FoundLoc
+  If StartLoc = 0 Then StartLoc = 1
+  FoundLoc = InStr(StartLoc, SourceString, Searchstring) '*
+  If FoundLoc <> 0 And FoundLoc < 2 Then
+     ReplaceFirstInstance = Left(SourceString, FoundLoc - 1) & Replacestring & Right(SourceString, Len(SourceString) - (FoundLoc - 1) - Len(Searchstring))
+     StartLoc = FoundLoc + Len(Replacestring)
+  ElseIf FoundLoc > 1 Then
+  
+      ReplaceFirstInstance = Replacestring & "21" & SourceString
+
+  Else
+     StartLoc = 1
+
+    ReplaceFirstInstance = SourceString
+  End If
+End Function
+
+Function FindReplace(SourceString, Searchstring, Replacestring) As String
+  Dim tmpString1
+  Dim tmpString2
+  tmpString1 = SourceString
+ 
+      tmpString2 = tmpString1
+      tmpString1 = ReplaceFirstInstance(tmpString1, _
+                   Searchstring, Replacestring)
+      
+      FindReplace = tmpString1
+End Function
+

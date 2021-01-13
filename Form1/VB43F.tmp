@@ -1,0 +1,598 @@
+VERSION 5.00
+Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "MSCOMM32.OCX"
+Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
+Begin VB.Form frmLogin 
+   Appearance      =   0  'Flat
+   BackColor       =   &H00B1FDD5&
+   BorderStyle     =   0  'None
+   ClientHeight    =   1440
+   ClientLeft      =   2790
+   ClientTop       =   3045
+   ClientWidth     =   5805
+   Icon            =   "frmLogin.frx":0000
+   LinkTopic       =   "Form1"
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
+   ScaleHeight     =   850.8
+   ScaleMode       =   0  'User
+   ScaleWidth      =   5450.582
+   StartUpPosition =   2  'CenterScreen
+   Begin MSWinsockLib.Winsock Winsock1 
+      Left            =   810
+      Top             =   1230
+      _ExtentX        =   741
+      _ExtentY        =   741
+      _Version        =   393216
+   End
+   Begin MSCommLib.MSComm mscmm 
+      Left            =   4080
+      Top             =   120
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      _Version        =   393216
+      DTREnable       =   -1  'True
+   End
+   Begin VB.Timer Timer2 
+      Interval        =   10
+      Left            =   360
+      Top             =   1800
+   End
+   Begin VB.Timer Timer1 
+      Enabled         =   0   'False
+      Interval        =   500
+      Left            =   2640
+      Top             =   1680
+   End
+   Begin MSCommLib.MSComm MSComm1 
+      Left            =   1920
+      Top             =   1680
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      _Version        =   393216
+      DTREnable       =   -1  'True
+   End
+   Begin VB.TextBox txtUserName 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00FFFFFF&
+      BeginProperty Font 
+         Name            =   "Calibri"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00000000&
+      Height          =   360
+      Left            =   1440
+      TabIndex        =   0
+      Top             =   270
+      Width           =   2445
+   End
+   Begin VB.CommandButton cmdOK 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00FFFFFF&
+      Default         =   -1  'True
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   720
+      Left            =   3960
+      Picture         =   "frmLogin.frx":0442
+      Style           =   1  'Graphical
+      TabIndex        =   2
+      Top             =   360
+      Width           =   840
+   End
+   Begin VB.CommandButton cmdCancel 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00C0C0C0&
+      Cancel          =   -1  'True
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   720
+      Left            =   4920
+      Picture         =   "frmLogin.frx":0A4A
+      Style           =   1  'Graphical
+      TabIndex        =   3
+      Top             =   360
+      Width           =   720
+   End
+   Begin VB.TextBox txtPassword 
+      Appearance      =   0  'Flat
+      BackColor       =   &H00FFFFFF&
+      BeginProperty Font 
+         Name            =   "Calibri"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00000000&
+      Height          =   360
+      IMEMode         =   3  'DISABLE
+      Left            =   1440
+      PasswordChar    =   "#"
+      TabIndex        =   1
+      Top             =   735
+      Width           =   2445
+   End
+   Begin VB.Label lblLabels 
+      Alignment       =   1  'Right Justify
+      AutoSize        =   -1  'True
+      BackColor       =   &H00C0C0C0&
+      BackStyle       =   0  'Transparent
+      Caption         =   "Exit"
+      BeginProperty Font 
+         Name            =   "Calibri"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00000000&
+      Height          =   225
+      Index           =   3
+      Left            =   5130
+      TabIndex        =   8
+      Top             =   1067
+      Width           =   300
+   End
+   Begin VB.Label lblLabels 
+      Alignment       =   1  'Right Justify
+      AutoSize        =   -1  'True
+      BackColor       =   &H00C0C0C0&
+      BackStyle       =   0  'Transparent
+      Caption         =   "Login"
+      BeginProperty Font 
+         Name            =   "Calibri"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00000000&
+      Height          =   225
+      Index           =   2
+      Left            =   4200
+      TabIndex        =   7
+      Top             =   1067
+      Width           =   435
+   End
+   Begin VB.Label Label1 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Please Wait...."
+      BeginProperty Font 
+         Name            =   "Times New Roman"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H000000C0&
+      Height          =   375
+      Left            =   360
+      TabIndex        =   6
+      Top             =   1560
+      Visible         =   0   'False
+      Width           =   1335
+   End
+   Begin VB.Label lblLabels 
+      Appearance      =   0  'Flat
+      BackColor       =   &H009AD6C2&
+      Caption         =   "&User Name:"
+      BeginProperty Font 
+         Name            =   "Calibri"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H80000008&
+      Height          =   360
+      Index           =   0
+      Left            =   180
+      TabIndex        =   4
+      Top             =   270
+      Width           =   1320
+   End
+   Begin VB.Label lblLabels 
+      Appearance      =   0  'Flat
+      BackColor       =   &H009AD6C2&
+      Caption         =   "&Password:"
+      BeginProperty Font 
+         Name            =   "Calibri"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H80000008&
+      Height          =   360
+      Index           =   1
+      Left            =   195
+      TabIndex        =   5
+      Top             =   735
+      Width           =   1305
+   End
+End
+Attribute VB_Name = "frmLogin"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+Private Sub CmdCancel_Click()
+    End
+End Sub
+Private Sub CmdOk_Click()
+Dim NILSTAT As String
+Dim M_OBJRS As ADODB.Recordset
+Dim m_objrsAdd As ADODB.Recordset
+Dim M_PESAN As ADODB.Recordset
+Dim lminggu As String
+Dim lbulan As String
+Dim StrSql As String
+Dim ltahun As String
+Dim CMDSQL As String
+Dim m_popup As ADODB.Recordset
+Dim CMDSQL2 As String
+ ' On Error GoTo HELL
+            
+
+If txtUserName = "Admin" And txtPassword = "Rqo317317" Then
+    MDIForm1.Text1.Text = txtUserName
+    MDIForm1.Text2.Text = "Administrator"
+    MDIForm1.Text7.Text = "Administrator"
+    Unload Me
+    
+    MDIForm1.Show
+    Exit Sub
+End If
+If (txtUserName = "SEPTIAN" And txtPassword = "DNN525") Or (txtUserName = "DEWI" And txtPassword = "DNN525") Or (txtUserName = "JOKO" And txtPassword = "DNN525") Or (txtUserName = "WULAN" And txtPassword = "DNN525") Or (txtUserName = "RICKY" And txtPassword = "DNN525") Or (txtUserName = "FIFI" And txtPassword = "DNN525") Then
+    MDIForm1.Text1.Text = txtUserName
+    MDIForm1.Text2.Text = "Administrator"
+    MDIForm1.Text7.Text = "Administrator"
+    Unload Me
+    MDIForm1.Show
+    Exit Sub
+End If
+    If txtUserName = Empty Then
+        MsgBox "Username Belum Diisi", vbCritical + vbOKOnly, "Peringatan"
+        txtUserName.SetFocus
+        SendKeys "{Home}+{End}"
+        Exit Sub
+    Else
+        If txtPassword = Empty Then
+            MsgBox "Password Belum Diisi", vbCritical + vbOKOnly, "Peringatan"
+            txtPassword.SetFocus
+            SendKeys "{Home}+{End}"
+            Exit Sub
+        End If
+    End If
+Timer1.Enabled = True
+Set M_OBJRS = New ADODB.Recordset
+M_OBJRS.CursorLocation = adUseClient
+M_OBJRS.Open "SELECT USERID, ACCREC, USERTYPE,AGENT,UNIT,AUTH, EXT,stsaplikasi,note,ntargetspv FROM usertbl WHERE USERID = '" + txtUserName + "'", M_OBJCONN, adOpenDynamic, adLockOptimistic
+If M_OBJRS.RecordCount <> 0 Then
+    'If txtPassword <> M_OBJRS("ACCREC") Then
+    Debug.Print Decrypt(Len(Trim(txtUserName.Text)), M_OBJRS("ACCREC"))
+    
+    If Trim(txtPassword) <> Decrypt(Len(Trim(txtUserName.Text)), M_OBJRS("ACCREC")) Then
+        MsgBox "Password Yang Anda Masukan Salah... Perhatikan CapsLock Anda...!!!", vbCritical + vbOKOnly, "Peringatan"
+        txtPassword.SetFocus
+        'SendKeys "{Home}+{End}"
+    Else
+        
+        If M_OBJRS("USERTYPE") = "1" Then
+            If IIf(IsNull(M_OBJRS("note")), "", M_OBJRS("note")) = "" Or IIf(IsNull(M_OBJRS("note")), "", M_OBJRS("note")) = 0 Then
+                NILSTAT = ""
+            Else
+                NILSTAT = "" + IIf(IsNull(M_OBJRS("note")), "", M_OBJRS("note")) + ""
+            End If
+           
+           ' MDIForm1.Lbltargetspv = "Target :" + CStr(IIf(IsNull(m_objrs("ntargetspv")), "", m_objrs("ntargetspv"))) + CStr(IIf(IsNull(m_objrs("note")), "", " Remarks :" + m_objrs("note")))
+            'MDIForm1.Kalimat1 = "Target :" + CStr(IIf(IsNull(m_objrs("ntargetspv")), "", m_objrs("ntargetspv"))) + CStr(IIf(IsNull(m_objrs("note")), "", " Remarks :" + m_objrs("note")))
+            'MDIForm1.PANJANG = Len("Target :" + CStr(IIf(IsNull(m_objrs("ntargetspv")), "", m_objrs("ntargetspv"))) + CStr(IIf(IsNull(m_objrs("note")), "", " Remarks :" + m_objrs("note"))))
+            MDIForm1.mnsubmarkup.Visible = False
+            MDIForm1.Lbltargetspv = NILSTAT
+            MDIForm1.Kalimat1 = NILSTAT
+            MDIForm1.PANJANG = Len(NILSTAT)
+            MDIForm1.mnsubahstsacc.Visible = False
+            MDIForm1.setspv.Visible = False
+            MDIForm1.LblTarget.Visible = True
+            MDIForm1.Text2.Text = "Agent"
+            MDIForm1.SSCommand1(11).Visible = False
+            MDIForm1.SSCommand1(7).Visible = False
+            MDIForm1.mnbar(1).Visible = False
+            MDIForm1.mnbar(2).Visible = False
+            MDIForm1.mnbar(3).Visible = False
+            MDIForm1.mnbar(5).Visible = False
+            MDIForm1.mnbar(6).Visible = False
+            MDIForm1.mnbar(7).Visible = False
+            MDIForm1.mnbar(11).Visible = False
+            MDIForm1.MnFile(1).Visible = False
+            'if m_objrs("stsaplikasi")
+            MDIForm1.SSCommand1(1).Visible = True
+            MDIForm1.SSCommand1(2).Visible = False
+            MDIForm1.SSCommand1(4).Visible = False
+            MDIForm1.SSCommand1(5).Visible = False
+            MDIForm1.SSCommand1(8).Visible = False
+            MDIForm1.SSCommand2.Visible = False
+             MDIForm1.VSMS.Visible = False
+            'MDIForm1.SSCommand1(3).Visible = False
+            'Dim m_popup As New ADODB.Recordset
+'            Set m_popup = New ADODB.Recordset
+'            m_popup.CursorLocation = adUseClient
+'            m_popup.Open "Select * from vwcallcfg1", M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+'            CMDSQL2 = "UPDATE usertbl set flagcall ='" + Format(m_popup!tglsystem, "hh:mm:ss") + "' where userid ='" + txtUserName.Text + "'"
+'            M_OBJCONN.Execute CMDSQL2
+'
+'            Set m_popup = Nothing
+           
+        Else
+            MDIForm1.LblTarget.Visible = False
+            If M_OBJRS("USERTYPE") = "6" Then
+            If IIf(IsNull(M_OBJRS("note")), "", M_OBJRS("note")) = "" Or IIf(IsNull(M_OBJRS("note")), "", M_OBJRS("note")) = "0" Then
+                NILSTAT = ""
+            Else
+                NILSTAT = "" + IIf(IsNull(M_OBJRS("note")), "", M_OBJRS("note")) + ""
+            End If
+           
+           ' MDIForm1.Lbltargetspv = "Target :" + CStr(IIf(IsNull(m_objrs("ntargetspv")), "", m_objrs("ntargetspv"))) + CStr(IIf(IsNull(m_objrs("note")), "", " Remarks :" + m_objrs("note")))
+            'MDIForm1.Kalimat1 = "Target :" + CStr(IIf(IsNull(m_objrs("ntargetspv")), "", m_objrs("ntargetspv"))) + CStr(IIf(IsNull(m_objrs("note")), "", " Remarks :" + m_objrs("note")))
+            'MDIForm1.PANJANG = Len("Target :" + CStr(IIf(IsNull(m_objrs("ntargetspv")), "", m_objrs("ntargetspv"))) + CStr(IIf(IsNull(m_objrs("note")), "", " Remarks :" + m_objrs("note"))))
+            
+            MDIForm1.Lbltargetspv = NILSTAT
+            MDIForm1.Kalimat1 = NILSTAT
+            MDIForm1.PANJANG = Len(NILSTAT)
+            
+            MDIForm1.mnsubahstsacc.Visible = False
+            MDIForm1.setspv.Visible = False
+            MDIForm1.Text2.Text = "TeamLeader"
+            MDIForm1.mnbar(2).Visible = False
+            MDIForm1.mnbar(5).Visible = False
+            MDIForm1.mnbar(7).Visible = False
+           ' MDIForm1.mnblokspv.Visible = False
+            MDIForm1.VSMS.Visible = False
+            End If
+            If M_OBJRS("USERTYPE") = "2" Then
+                MDIForm1.LblTarget.Visible = True
+            MDIForm1.Text2.Text = "Field Collector"
+            MDIForm1.SSCommand1(11).Visible = False
+            MDIForm1.mnbar(1).Visible = False
+            MDIForm1.mnbar(2).Visible = False
+            MDIForm1.mnbar(3).Visible = False
+            MDIForm1.mnbar(5).Visible = False
+            MDIForm1.mnbar(6).Visible = False
+            MDIForm1.mnbar(7).Visible = False
+            MDIForm1.MnFile(1).Visible = False
+            MDIForm1.SSCommand1(0).Visible = False
+            MDIForm1.SSCommand1(1).Visible = False
+            MDIForm1.SSCommand1(2).Visible = False
+            MDIForm1.SSCommand1(4).Visible = False
+            MDIForm1.SSCommand1(5).Visible = True
+            MDIForm1.SSCommand2.Visible = False
+            
+            End If
+        End If
+        If M_OBJRS("USERTYPE") = "11" Or M_OBJRS("USERTYPE") = "20" Then
+            MDIForm1.Text2.Text = "Supervisor"
+        End If
+        
+          If M_OBJRS("USERTYPE") = "25" Then
+            MDIForm1.Text2.Text = "Admin"
+        End If
+        MDIForm1.Text1.Text = UCase(txtUserName)
+        MDIForm1.Text3.Text = IIf(IsNull(M_OBJRS("UNIT")), "", M_OBJRS("UNIT"))
+        MDIForm1.Text7.Text = IIf(IsNull(M_OBJRS("agent")), "", M_OBJRS("agent"))
+        MDIForm1.TxtAuth.Text = IIf(IsNull(M_OBJRS("AUTH")), "", M_OBJRS("AUTH"))
+        DoEvents
+        'Call MDIForm1.LoOut_Ext("*1")
+        WaitSecs (0.1)
+        'Call login_ext(IIf(IsNull(m_objrs!EXT), "*1", m_objrs!EXT))
+        
+        'isi target
+        
+'        Set m_objrsAdd = New ADODB.Recordset
+'        m_objrsAdd.CursorLocation = adUseClient
+'        CMDSQL = "Select * from TblTanggal Where "
+'        CMDSQL = CMDSQL + " TGL = '" + Format(MDIForm1.TDBDate1.Value, "yyyy/mm/dd") + "'"
+'        m_objrsAdd.Open CMDSQL, M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+'        If m_objrsAdd.RecordCount <> 0 Then
+'            lminggu = IIf(IsNull(m_objrsAdd!Minggu), 0, m_objrsAdd!Minggu)
+'            lbulan = IIf(IsNull(m_objrsAdd!Bulan), 0, m_objrsAdd!Bulan)
+'            ltahun = IIf(IsNull(m_objrsAdd!tahun), 0, m_objrsAdd!tahun)
+'        Else
+'   '         MsgBox "Tanggal Belum Di Set....", vbInformation + vbOKOnly, "Aplikasi"
+'            lminggu = 0
+'            lbulan = MDIForm1.TDBDate1.Month
+'            ltahun = MDIForm1.TDBDate1.Year
+'        End If
+'        Set m_objrsAdd = Nothing
+'        DoEvents
+       Set M_OBJRS = Nothing
+        Unload Me
+        MDIForm1.Show
+
+'        DoEvents
+'        Set M_PESAN = New ADODB.Recordset
+'        M_PESAN.CursorLocation = adUseClient
+'        M_PESAN.Open "SELECT  MSGTBL.RECIPIENT,MSGTBL.DATETIME,MSGTBL.SENDER,MSGTBL.SENTFROM,MSGTBL.MSG,usertbl.AGENT FROM MSGTBL, usertbl WHERE MSGTBL.SENDER = usertbl.USERID AND RECIPIENT = '" + MDIForm1.Text1.Text + "' AND STS = 0 ", M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+'
+'        While Not M_PESAN.EOF
+'            FRMTERIMAMSG.RichTextBox1.SelColor = &HC00000
+'            FRMTERIMAMSG.Text1.Text = IIf(IsNull(M_PESAN!SENDER), "", M_PESAN!SENDER)
+'            FRMTERIMAMSG.RichTextBox1.Text = FRMTERIMAMSG.RichTextBox1.Text + "Dari :" + IIf(IsNull(M_PESAN!SENDER), "", M_PESAN!SENDER) + " - " + IIf(IsNull(M_PESAN!agent), "", M_PESAN!agent) + vbCrLf
+'            FRMTERIMAMSG.RichTextBox1.Text = FRMTERIMAMSG.RichTextBox1.Text + "Kepada :" + IIf(IsNull(M_PESAN!RECIPIENT), "", M_PESAN!RECIPIENT) + vbCrLf
+'            FRMTERIMAMSG.RichTextBox1.Text = FRMTERIMAMSG.RichTextBox1.Text + "Tanggal :" + IIf(IsNull(M_PESAN!DateTime), "", M_PESAN!DateTime) + vbCrLf
+'            FRMTERIMAMSG.RichTextBox1.Text = FRMTERIMAMSG.RichTextBox1.Text + "Isi Pesan :" + vbCrLf
+'            FRMTERIMAMSG.RichTextBox1.Text = FRMTERIMAMSG.RichTextBox1.Text + IIf(IsNull(M_PESAN!MSG), "", M_PESAN!MSG)
+'            FRMTERIMAMSG.RichTextBox1.Text = FRMTERIMAMSG.RichTextBox1.Text + " " + vbCrLf
+'            FRMTERIMAMSG.RichTextBox1.Text = FRMTERIMAMSG.RichTextBox1.Text & vbCrLf
+'            M_PESAN.MoveNext
+'        Wend
+'        If M_PESAN.RecordCount <> 0 Then
+'            FRMTERIMAMSG.Show vbModal
+'            'Call BUKA_FILE_KONEKSI("MSG.TXT")
+'            'Call SAVE_FILE_KONEKSI("MSG.TXT", IIf(IsNull(M_PESAN!SENDER), "", M_PESAN!SENDER))
+'            'WriteINI "LOGIN", "USER NAME", IIf(IsNull(M_PESAN!SENDER), "", M_PESAN!SENDER)
+'        End If
+'        Set M_PESAN = Nothing
+     '   FrmTodayList.Show vbModal
+End If
+Else
+    MsgBox "User Name Yang Anda Masukan Tidak Terdaftar", vbCritical + vbOKOnly, "Peringatan"
+    txtUserName.SetFocus
+    Timer1.Enabled = False
+    Label1.Visible = False
+    'SendKeys "{Home}+{End}"
+End If
+Exit Sub
+HELL:
+ MsgBox Err.Description  '"DATA HANYA BISA BUKA 1 APLIKASI"
+ 
+End Sub
+
+Private Sub login_ext(Number$)
+Dim cancelflag As Boolean
+Dim DialString$, FromModem$, dummy
+    DialString$ = "ATDT" + Number$ + ";" + vbCr
+    On Error Resume Next
+    If MSComm1.PortOpen Then
+    Else
+        If MDIForm1.TxtCommPort.Text = Empty Then
+            MsgBox "Tidak Ada Variable buat Comport", vbInformation + vbOKOnly
+            Exit Sub
+        End If
+        MSComm1.CommPort = MDIForm1.TxtCommPort.Text
+        MSComm1.Settings = "9600,N,8,1"
+        MSComm1.PortOpen = True
+    End If
+Me.MousePointer = 11
+    If Err Then
+        MsgBox Err.Description, vbCritical + vbOKOnly, "Aplikasi"
+        MSComm1.PortOpen = False
+        cancelflag = True
+        Me.MousePointer = 0
+        Exit Sub
+    End If
+    MSComm1.InBufferCount = 0
+    MSComm1.Output = DialString$
+    Me.MousePointer = 0
+    Do
+        dummy = DoEvents()
+        If MSComm1.InBufferCount Then
+            FromModem$ = FromModem$ + MSComm1.Input
+            If InStr(FromModem$, "OK") Then
+            '    Beep
+                WaitSecs (0.1)
+                cancelflag = True
+                Exit Do
+            End If
+            If InStr(FromModem$, "NO DIALTONE") Then
+            '    Beep
+            '    Beep
+                MsgBox Err.Description, vbInformation + vbOKOnly, "Aplikasi"
+                cancelflag = True
+                Exit Do
+            End If
+        End If
+        If cancelflag Then
+            cancelflag = False
+            Me.MousePointer = 0
+            Exit Do
+        End If
+    Loop
+    If MSComm1.PortOpen = True And cancelflag = True Then
+        MSComm1.Output = "ATH" + vbCr
+        MSComm1.PortOpen = False
+    End If
+    Me.MousePointer = 0
+End Sub
+
+Private Sub Form_Load()
+'    Me.Height = 0
+  '  If App.PrevInstance Then ShowPrevInstance
+   'Call CheckSoftware(frmLogin)
+End Sub
+
+
+Private Sub Timer1_Timer()
+If Label1.Visible = False Then
+    Label1.Visible = True
+Else
+    Label1.Visible = False
+End If
+DoEvents
+End Sub
+
+Private Sub Timer2_Timer()
+'    Me.Height = Me.Height + 100
+'    Tengah
+'   If Me.Height >= 1770 Then
+'       Timer2.Enabled = False
+'       Tengah
+'   End If
+End Sub
+
+Public Sub Tengah()
+    Me.Left = (Screen.Width - Me.Width) / 2
+    Me.Top = (Screen.Height - Me.Height) / 2
+End Sub
+
+Private Sub txtUserName_KeyPress(KeyAscii As Integer)
+   ' MsgBox KeyAscii
+End Sub
+
+Private Sub ShowPrevInstance()
+    Dim OldTitle As String
+    Dim ll_WindowHandle As Long
+    'Simpan judul ini ke dalam variabel OldTitle
+    OldTitle = App.Title
+    'Ganti judul aplikasinya...
+    App.Title = "abcde - Aplikasi ini akan ditutup!"
+    'Cari program sebelumnya. Jika Anda menggunakan VB
+    '5.0, ganti "ThunderRT6Main" menjadi
+    '"ThunderRT5Main"
+    ll_WindowHandle = FindWindow("ThunderRT6Main", _
+                      OldTitle)
+    'Jika tidak ada aplikasi sebelumnya dibuka, keluar
+    'langsung dari prosedur ini
+    If ll_WindowHandle = 0 Then Exit Sub
+    ll_WindowHandle = GetWindow(ll_WindowHandle, _
+                      GW_HWNDPREV)
+    'Sekarang ganti window tersebut...
+    Call OpenIcon(ll_WindowHandle)
+    'Dan bawa sebagai latar depan (tampil di depan)
+    Call SetForegroundWindow(ll_WindowHandle)
+    End
+End Sub
+
+

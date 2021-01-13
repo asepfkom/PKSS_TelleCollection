@@ -1,0 +1,184 @@
+VERSION 1.0 CLASS
+BEGIN
+  MultiUse = -1  'True
+  Persistable = 0  'NotPersistable
+  DataBindingBehavior = 0  'vbNone
+  DataSourceBehavior  = 0  'vbNone
+  MTSTransactionMode  = 0  'NotAnMTSObject
+END
+Attribute VB_Name = "CLS_FRMAPPROVAL"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = False
+Option Explicit
+Public Function QUERY_SEARCH_CONDITION(M_OBJCONN As ADODB.Connection, NAMACUST As String, NAMAAGENT As String, DATASOURCE As String, TGLLAHIR As String, OFFPHONE As String, OFFPHONE2 As String, HOMEPHONE As String, HOMEPHONE2 As String, MOBILEPHONE As String, MOBILEPHONE2 As String, FAXPHONE As String, FAXPHONE2 As String, TIPE_PRODUK As String) As Object
+Dim CMDSQL As String
+Dim SYARAT As String
+Dim m_objrs As ADODB.Recordset
+
+Select Case UCase(TIPE_PRODUK)
+Case "KTA"
+    CMDSQL = "SELECT * FROM KTA_CUSTTBL"
+Case "CREDIT CARD"
+    CMDSQL = "SELECT * FROM CC_CUSTTBL"
+Case "KTA - CROSS SELL"
+    CMDSQL = "SELECT * FROM CS_CUSTTBL"
+Case "CC - CROSS SELL"
+    CMDSQL = "SELECT * FROM CCCS_CUSTTBL"
+Case Else
+    Exit Function
+End Select
+ If NAMAAGENT <> Empty Then
+    SYARAT = SYARAT + " WHERE " + NAMAAGENT
+ End If
+ 
+ If NAMACUST <> Empty Then
+    If Len(SYARAT) <> 0 Then
+        SYARAT = SYARAT + " AND " + NAMACUST
+    Else
+        SYARAT = SYARAT + " WHERE " + NAMACUST
+    End If
+ End If
+ 
+ If DATASOURCE <> Empty Then
+    If Len(SYARAT) > 0 Then
+        SYARAT = SYARAT + " AND " + DATASOURCE
+    Else
+        SYARAT = SYARAT + " WHERE " + DATASOURCE
+    End If
+ End If
+ 
+ If TGLLAHIR <> Empty Then
+    If Len(SYARAT) > 0 Then
+        SYARAT = SYARAT + " AND " + TGLLAHIR
+    Else
+        SYARAT = SYARAT + " WHERE " + TGLLAHIR
+    End If
+ End If
+ 
+ If OFFPHONE <> Empty Then
+    If Len(SYARAT) > 0 Then
+        SYARAT = SYARAT + " AND (" + OFFPHONE
+    Else
+        SYARAT = SYARAT + " WHERE (" + OFFPHONE
+    End If
+ End If
+ 
+ If OFFPHONE2 <> Empty Then
+    SYARAT = SYARAT + " OR " + OFFPHONE2 + ")"
+ End If
+ 
+ If HOMEPHONE <> Empty Then
+    If Len(SYARAT) > 0 Then
+        SYARAT = SYARAT + " OR (" + HOMEPHONE
+    Else
+        SYARAT = SYARAT + " WHERE (" + HOMEPHONE
+    End If
+ End If
+ 
+ If HOMEPHONE2 <> Empty Then
+    SYARAT = SYARAT + " OR " + HOMEPHONE2 + ")"
+ End If
+ 
+ If MOBILEPHONE <> Empty Then
+    If Len(SYARAT) > 0 Then
+        SYARAT = SYARAT + " AND (" + MOBILEPHONE
+    Else
+        SYARAT = SYARAT + " WHERE (" + MOBILEPHONE
+    End If
+ End If
+ 
+ If MOBILEPHONE2 <> Empty Then
+    SYARAT = SYARAT + " OR " + MOBILEPHONE2 + ")"
+ End If
+ 
+ If FAXPHONE <> Empty Then
+    If Len(SYARAT) > 0 Then
+        SYARAT = SYARAT + " OR (" + FAXPHONE
+    Else
+        SYARAT = SYARAT + " WHERE (" + FAXPHONE
+    End If
+ End If
+ 
+ If FAXPHONE2 <> Empty Then
+     SYARAT = SYARAT + " OR " + FAXPHONE2 + ")"
+ End If
+ 
+CMDSQL = CMDSQL + " " + SYARAT + " AND ((KETHSLKERJA = '2E') OR (KETHSLKERJA = '3A') OR (KETHSLKERJA = '3B') OR (KETHSLKERJA = '3C') OR (KETHSLKERJA = '3D') OR (KETHSLKERJA = '3E')) AND LEN(NOLAP) > 1 ORDER BY NAME"
+    
+Set m_objrs = New ADODB.Recordset
+m_objrs.CursorLocation = adUseClient
+m_objrs.Open CMDSQL, M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+Set QUERY_SEARCH_CONDITION = m_objrs
+Set m_objrs = Nothing
+End Function
+
+
+Public Function QUERY_SEARCH(M_OBJCONN As ADODB.Connection, M_WHERE As String, TIPE_PRODUK As String) As Object
+Dim CMDSQL As String
+Dim m_objrs As ADODB.Recordset
+Select Case UCase(TIPE_PRODUK)
+Case "KTA"
+    CMDSQL = "SELECT * FROM KTA_CUSTTBL"
+Case "CREDIT CARD"
+    CMDSQL = "SELECT * FROM CC_CUSTTBL"
+Case "KTA - CROSS SELL"
+    CMDSQL = "SELECT * FROM CS_CUSTTBL"
+Case "CC - CROSS SELL"
+    CMDSQL = "SELECT * FROM CCCS_CUSTTBL"
+Case Else
+    Exit Function
+End Select
+
+ If Len(M_WHERE) <> 0 Then
+    CMDSQL = CMDSQL + " WHERE " + M_WHERE
+ End If
+    
+CMDSQL = CMDSQL + " AND ((KETHSLKERJA = '2E') OR (KETHSLKERJA = '3A') OR (KETHSLKERJA = '3B') OR (KETHSLKERJA = '3C') OR (KETHSLKERJA = '3D') OR (KETHSLKERJA = '3E')) AND LEN(NOLAP) > 1 ORDER BY NAME"
+    
+Set m_objrs = New ADODB.Recordset
+m_objrs.CursorLocation = adUseClient
+m_objrs.Open CMDSQL, M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+Set QUERY_SEARCH = m_objrs
+Set m_objrs = Nothing
+End Function
+
+Public Function QUERY_AGENT(M_OBJCONN As ADODB.Connection, M_WHERE As String) As Object
+Dim CMDSQL As String
+Dim m_objrs As ADODB.Recordset
+
+    CMDSQL = "SELECT USERTBL.*, SPVTBL.SPVNAME"
+    CMDSQL = CMDSQL + " FROM USERTBL INNER JOIN"
+    CMDSQL = CMDSQL + " SPVTBL ON USERTBL.SPVCODE = SPVTBL.SPVCODE"
+    CMDSQL = CMDSQL + " WHERE USERTYPE ='1'"
+    If Len(M_WHERE) <> 0 Then
+        CMDSQL = CMDSQL + " AND " + M_WHERE
+    End If
+    
+    CMDSQL = CMDSQL + " ORDER BY USERID"
+    
+Set m_objrs = New ADODB.Recordset
+m_objrs.CursorLocation = adUseClient
+m_objrs.Open CMDSQL, M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+Set QUERY_AGENT = m_objrs
+Set m_objrs = Nothing
+End Function
+
+Public Function QUERY_DATASOURCE(M_OBJCONN As ADODB.Connection, M_WHERE As String) As Object
+Dim CMDSQL As String
+Dim m_objrs As ADODB.Recordset
+
+CMDSQL = "SELECT * FROM DATASOURCETBL"
+ If Len(M_WHERE) <> 0 Then
+    CMDSQL = CMDSQL + " WHERE " + M_WHERE
+ End If
+    
+CMDSQL = CMDSQL + " ORDER BY KODEDS"
+    
+Set m_objrs = New ADODB.Recordset
+m_objrs.CursorLocation = adUseClient
+m_objrs.Open CMDSQL, M_OBJCONN, adOpenDynamic, adLockOptimistic, adCmdText
+Set QUERY_DATASOURCE = m_objrs
+Set m_objrs = Nothing
+End Function
